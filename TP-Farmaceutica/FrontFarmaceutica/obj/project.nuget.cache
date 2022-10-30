@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "JD47Wg8ACwLipEXsJ8XEIaXEld5yF4dmnfuSHfklETrTxG7FYsvHHNx5wTk3wkzY6bqU0owZP8a8cVH1Smd7aA==",
+  "success": true,
+  "projectFilePath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\FrontFarmaceutica.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\juliemi\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
