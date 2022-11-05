@@ -1,6 +1,6 @@
-create database FARMACIA_progra
-go
-use FARMACIA_progra
+--create database FARMACIA_progra
+--go
+--use FARMACIA_progra
 go
 
 create table Formas_pago
@@ -41,7 +41,7 @@ references formas_pago(cod_forma_pago),
 constraint fk_obra_v foreign key (cod_obra_social)
 references Obras_sociales
 )
-	
+
 create table Detalles_ventas
 (cod_detalle_venta int identity(1,1),
 nro_venta int,

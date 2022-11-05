@@ -511,19 +511,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\juliemi\\.nuget\\packages\\": {}
+    "C:\\Users\\Juan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Juan\\Documents\\UTN\\Programacion 2\\TP\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
       "projectName": "DataAPI",
-      "projectPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
-      "packagesPath": "C:\\Users\\juliemi\\.nuget\\packages\\",
-      "outputPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\obj\\",
+      "projectPath": "C:\\Users\\Juan\\Documents\\UTN\\Programacion 2\\TP\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
+      "packagesPath": "C:\\Users\\Juan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Juan\\Documents\\UTN\\Programacion 2\\TP\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\juliemi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -574,7 +574,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -131,7 +131,7 @@ go
 
 
 --Login
-alter proc comprobarUsuario
+create proc comprobarUsuario
 @nombreUsuario varchar(100), @contrasenia varchar(100)
 as
 begin
@@ -146,3 +146,127 @@ begin
 		return 0
 	end
 end
+
+-- proxima factura
+CREATE PROCEDURE proximaFactura
+@next int OUTPUT
+AS
+BEGIN
+	SET @next = (SELECT MAX(nro_venta)+1  FROM Ventas);
+END
+GO
+/****** Object:  StoredProcedure proximaFactura ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+--Suministros
+CREATE PROCEDURE consultarSuministros
+AS
+BEGIN
+	
+	SELECT * from suministros;
+END
+GO
+/****** Object:  StoredProcedure consultarSuministro ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Maestro
+CREATE PROCEDURE insertarMaestro
+	@fecha datetime,
+	@cliente varchar(255), 
+	@formaPago numeric(5,2),
+	@codigoOS numeric(8,2),
+	@presupuesto_nro int OUTPUT
+AS
+BEGIN
+	INSERT INTO Ventas (fecha, cliente, cod_forma_pago, cod_obra_social)
+    VALUES (@fecha,@cliente, @formaPago, @codigoOS);
+    --Asignamos el valor del último ID autogenerado (obtenido --  
+    --mediante la función SCOPE_IDENTITY() de SQLServer)	
+    SET @presupuesto_nro = SCOPE_IDENTITY();
+
+END
+GO
+/****** Object:  StoredProcedure insertarMaestro ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+----- Detalle
+create PROCEDURE insertarDetalle
+	@nro_venta int,
+	@cod_suministro int, 
+	@cantidad int, 
+	@precio int,
+	@cubierto bit
+AS
+BEGIN
+	INSERT INTO Detalles_ventas (nro_venta,cod_suministro,cantidad,precio_venta,cubierto)
+	
+    VALUES (@nro_venta, @cod_suministro, @cantidad, @precio,@cubierto);
+  
+END
+GO
+/****** Object:  StoredProcedure insetarDetalle ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+----- Formularios
+create procedure consultar_ventas
+	@fecha1 datetime,
+	@fecha2 datetime
+as
+begin
+	if @fecha1 < @fecha2
+	begin
+		select v.nro_venta,
+		fecha,
+		cliente,
+		cod_forma_pago,
+		cod_obra_social
+		from Ventas v
+		where fecha between @fecha1 and @fecha2 
+		order by 2 desc
+	end
+	else
+	begin
+		raiserror('Valores incorrectos',16,1)
+	end
+end
+go
+
+----2
+create proc consultar_suministros
+ 
+	@suministro varchar(100)='',
+	@tipo int =null
+as
+begin
+	if @suministro = null and @tipo = null
+	begin
+		select cod_suministro,
+		descripcion,
+		precio_unitario ,
+		venta_libre,
+		tipo_sum
+		from Suministros s , Tipos_suministros t
+		where t.cod_tipo_sum=s.cod_tipo_sum 
+		order by 1 desc
+	end
+	else
+	begin
+	raiserror('Valores incorrectos',16,1)
+	end
+end
+go
+
