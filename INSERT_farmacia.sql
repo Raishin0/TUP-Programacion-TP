@@ -63,3 +63,15 @@ insert into Usuarios(nombre, constraseña) values('Lucia', PWDENCRYPT('hola123'))
 exec comprobarUsuario 'Carlos', 'aguanteBOCA12'
 exec comprobarUsuario 'Lucia', 'hola123'
 
+
+update Suministros set Stock = 25 where cod_suministro=1
+update Suministros set Stock = 20 where cod_suministro=2
+update Suministros set Stock = 15 where cod_suministro=3
+update Suministros set Stock = 17 where cod_suministro=4
+update Suministros set Stock = 07 where cod_suministro=5
+update Suministros set Stock = 40 where cod_suministro=6
+update Suministros set Stock = 12 where cod_suministro=7
+update Suministros set Stock = 21 where cod_suministro=8
+update Suministros set Stock = 14 where cod_suministro=9
+
+select * from Suministros

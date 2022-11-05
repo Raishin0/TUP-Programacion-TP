@@ -247,26 +247,38 @@ go
 
 ----2
 create proc consultar_suministros
- 
-	@suministro varchar(100)='',
-	@tipo int =null
+	
 as
-begin
-	if @suministro = null and @tipo = null
-	begin
+begin	
 		select cod_suministro,
 		descripcion,
 		precio_unitario ,
 		venta_libre,
-		tipo_sum
+		tipo_sum,
+		stock 
 		from Suministros s , Tipos_suministros t
 		where t.cod_tipo_sum=s.cod_tipo_sum 
 		order by 1 desc
-	end
-	else
-	begin
-	raiserror('Valores incorrectos',16,1)
-	end
+	
 end
-go
 
+----- trigger modificacino stock
+create trigger dis_mod_stock
+ on Detalles_ventas
+ for insert
+ as
+ declare @stock int
+ select @stock= Stock from Suministros
+join inserted
+on inserted.cod_suministro=Suministros.cod_suministro
+ if (@stock>=(select cantidad from inserted))
+ update Suministros set Stock=Stock-inserted.cantidad
+ from Suministros
+ join inserted
+ on inserted.cod_suministro=Suministros.cod_suministro
+ else
+ begin
+ raiserror ('El stock en articulos es menor que la cantidad
+ solicitada', 16, 1)
+ rollback transaction
+ end

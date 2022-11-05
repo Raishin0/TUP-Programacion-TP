@@ -75,3 +75,6 @@ as
 	begin
 		insert into Usuarios(nombre, constraseña) (select nombre, constraseña from inserted)
 	end
+
+	alter table Suministros
+	add Stock int
