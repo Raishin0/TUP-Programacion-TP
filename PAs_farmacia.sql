@@ -128,3 +128,21 @@ end
 go
 exec pa_reembolso_obrasocial '1/1/2000', '1/12/2022'
 go
+
+
+--Login
+alter proc comprobarUsuario
+@nombreUsuario varchar(100), @contrasenia varchar(100)
+as
+begin
+	if(exists (select * from Usuarios where nombre=@nombreUsuario  and PWDCOMPARE(@contrasenia, 
+	constraseña) = 1))
+	begin
+		return 1
+	end
+	else
+	begin
+		raiserror('Nombre de usuario o constraseña incorrecta', 16, 1)
+		return 0
+	end
+end

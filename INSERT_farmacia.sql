@@ -57,3 +57,9 @@ insert into Detalles_ventas values(9,2,4,250,0)
 insert into Detalles_ventas values(9,4,1,630,0)
 insert into Detalles_ventas values(10,4,2,630,0)
 
+insert into Usuarios(nombre, constraseña) values('Carlos', PWDENCRYPT('aguanteBOCA12'))
+insert into Usuarios(nombre, constraseña) values('Lucia', PWDENCRYPT('hola123'))
+
+exec comprobarUsuario 'Carlos', 'aguanteBOCA12'
+exec comprobarUsuario 'Lucia', 'hola123'
+
