@@ -244,10 +244,20 @@ begin
 		select v.nro_venta,
 		fecha,
 		cliente,
-		cod_forma_pago,
-		cod_obra_social
+		forma_pago,
+		nom_obra_social,
+		sum(cantidad) cantidad_total,
+		sum(precio_venta*cantidad) importe_total
 		from Ventas v
+		join Formas_pago f on f.cod_forma_pago=v.cod_forma_pago
+		join Obras_sociales o on o.cod_obra_social=v.cod_obra_social
+		join Detalles_ventas dv on dv.nro_venta=v.nro_venta
 		where fecha between @fecha1 and @fecha2 
+		group by v.nro_venta,
+		fecha,
+		cliente,
+		forma_pago,
+		nom_obra_social
 		order by 2 desc
 	end
 	else
@@ -257,6 +267,8 @@ begin
 end
 go
 
+exec consultar_ventas '1/1/2000','1/1/2023'
+go
 ----2
 create proc consultar_suministros
 	

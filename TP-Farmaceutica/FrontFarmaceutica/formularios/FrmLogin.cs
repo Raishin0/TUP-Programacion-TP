@@ -1,5 +1,5 @@
 ﻿using FrontFarmaceutica.servicios;
-using FrontFarmaceutica.servicios.interfaz;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,18 +14,16 @@ namespace FrontFarmaceutica.formularios
 {
     public partial class FrmLogin : Form
     {
-        IServicio servicio;
-        FabricaServicio fabrica;
-        public FrmLogin(FabricaServicio fabrica)
+        string urlApi;
+        public FrmLogin(string urlApi)
         {
-            this.fabrica = fabrica;
-            servicio = fabrica.CrearServicio();
+            this.urlApi = urlApi;
             InitializeComponent();
         }
 
-        private void BtnEntrar_Click(object sender, EventArgs e)
+        private async void BtnEntrar_ClickAsync(object sender, EventArgs e)
         {
-            if(servicio.Login(TbxUsuario.Text, TbxContrasenia.Text) > 0)
+            if(await LoginAsync(TbxUsuario.Text, TbxContrasenia.Text))
             {
                 this.Close();
             }
@@ -33,6 +31,15 @@ namespace FrontFarmaceutica.formularios
             {
                 MessageBox.Show("Datos Incorrectos","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+        }
+
+
+        private async Task<bool> LoginAsync(string usuario, string password)
+        {
+            string url = urlApi + string.Format("login?nombre={0}&contrasenia={1}", usuario, password);
+            var data = await ClienteSingleton.GetInstance().GetAsync(url);
+            int value = JsonConvert.DeserializeObject<int>(data);
+            return value > 0;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
