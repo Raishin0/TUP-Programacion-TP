@@ -12,7 +12,7 @@ namespace NetFrameworkFront
 {
     public partial class FrmReporteVentas : Form
     {
-        public FrmReporteVentas()
+        public FrmReporteVentas(string url)
         {
             InitializeComponent();
         }

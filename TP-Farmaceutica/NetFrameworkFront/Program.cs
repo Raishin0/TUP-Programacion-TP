@@ -16,7 +16,7 @@ namespace NetFrameworkFront
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmReporteVentas());
+            Application.Run(new FrmReporteVentas(""));
         }
     }
 }

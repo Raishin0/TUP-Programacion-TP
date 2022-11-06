@@ -30,10 +30,10 @@ namespace FrontFarmaceutica.formularios
         {
             string url = urlApi + "articulos";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
-            List<Articulo> lst = JsonConvert.DeserializeObject<List<Articulo>>(data);
-            foreach(Articulo articulo in lst)
+            List<Suministro> lst = JsonConvert.DeserializeObject<List<Suministro>>(data);
+            foreach(Suministro sum in lst)
             {
-                dgvArticulos.Rows.Add(new object[] { articulo.Codigo, articulo.Descripcion, articulo.Precio });
+                dgvArticulos.Rows.Add(new object[] { sum.Codigo, sum.Descripcion, sum.Precio });
             }
         }
     }

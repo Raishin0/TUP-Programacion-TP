@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FrontFarmaceutica.servicios.interfaz;
 using FrontFarmaceutica.servicios;
 
 namespace FrontFarmaceutica.formularios
@@ -17,13 +16,11 @@ namespace FrontFarmaceutica.formularios
     public partial class FrmDetallesVentas : Form
     {
         string urlApi = "http://localhost:5023/";
-        int nroFactura;
-        Factura factura;
-        IServicio servicio;
-        public FrmDetallesVentas(int nroFactura, FabricaServicio fabrica)
+        int nroVenta;
+        Venta venta;
+        public FrmDetallesVentas(int nroVenta)
         {
-            this.nroFactura = nroFactura;
-            servicio = fabrica.CrearServicio();
+            this.nroVenta = nroVenta;
             InitializeComponent();
         }
 
@@ -49,21 +46,26 @@ namespace FrontFarmaceutica.formularios
 
         private void CargarFactura()
         {
-            factura = servicio.ObtenerFacturaPorNro(nroFactura);
-            TbxCliente.Text = factura.Cliente;
-            CbxFormaPago.SelectedValue = factura.FormaPago;
-            DtpFecha.Value = factura.Fecha;
+            venta = ObtenerFacturaPorNro(nroVenta);
+            TbxCliente.Text = venta.Cliente;
+            CbxFormaPago.SelectedValue = venta.FormaPago;
+            DtpFecha.Value = venta.Fecha;
 
-            foreach (Detalle detalle in factura.Detalles)
+            foreach (Detalle detalle in venta.Detalles)
             {
-                DgvDetalles.Rows.Add(new object[] { detalle.Articulo.Descripcion, detalle.Cantidad, detalle.Articulo.Precio });
+                DgvDetalles.Rows.Add(new object[] { detalle.Suministro.Descripcion, detalle.Cantidad, detalle.Suministro.Precio });
             }
             CalcularTotal();
         }
 
+        private Venta ObtenerFacturaPorNro(int nroVenta)
+        {
+            throw new NotImplementedException();
+        }
+
         private void CalcularTotal()
         {
-            double total = factura.CalcularTotal();
+            double total = venta.CalcularTotal();
             TbxTotal.Text = total.ToString();
         }
        

@@ -540,8 +540,7 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "DataAPI >= 1.0.0",
-      "NetFrameworkFront >= 1.0.0",
-      "Newtonsoft.Json >= 13.0.1"
+      "NetFrameworkFront >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -589,12 +588,6 @@
     "frameworks": {
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
-        "dependencies": {
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[13.0.1, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

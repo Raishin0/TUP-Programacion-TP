@@ -1,7 +1,5 @@
 ﻿using DataApi.dominio;
-using FrontFarmaceutica.servicios.implementacion;
 using FrontFarmaceutica.servicios;
-using FrontFarmaceutica.servicios.interfaz;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -47,15 +45,16 @@ namespace FrontFarmaceutica.formularios
         {
             if (DgvFacturas.CurrentCell.ColumnIndex == 5)
             {
-                QuitarFactura((int)DgvFacturas.CurrentRow.Cells[0].Value);
+                QuitarVenta((int)DgvFacturas.CurrentRow.Cells[0].Value);
             }
 
             if (DgvFacturas.CurrentCell.ColumnIndex == 6)
             {
-                ModificarFactura((int)DgvFacturas.CurrentRow.Cells[0].Value,
+                ModificarVenta((int)DgvFacturas.CurrentRow.Cells[0].Value,
                     (DateTime)DgvFacturas.CurrentRow.Cells[1].Value, 
                     (int)DgvFacturas.CurrentRow.Cells[2].Value,
-                    (string)DgvFacturas.CurrentRow.Cells[3].Value);
+                    (string)DgvFacturas.CurrentRow.Cells[3].Value,
+                    (int)DgvFacturas.CurrentRow.Cells[4].Value);
             }
             if (DgvFacturas.CurrentCell.ColumnIndex == 7)
             {
@@ -63,20 +62,20 @@ namespace FrontFarmaceutica.formularios
             }
         }
 
-        private void ModificarFactura(int nro, DateTime fecha, int formaPago, string cliente, int obraSocial)
+        private void ModificarVenta(int nro, DateTime fecha, int formaPago, string cliente, int obraSocial)
         {
             Venta venta = new Venta(nro, fecha, formaPago, cliente, obraSocial);
             FrmModificarVentas frmModificarFactura = new FrmModificarVentas(venta,urlApi);
             frmModificarFactura.Show();
         }
 
-        private void QuitarFactura(int nroFactura)
+        private void QuitarVenta(int nro)
         {
-            if (MessageBox.Show($"Seguro que quiere quitar la factura Nº{nroFactura}?",
+            if (MessageBox.Show($"Seguro que quiere quitar la factura Nº{nro}?",
                 "Borrar",MessageBoxButtons.YesNo,MessageBoxIcon.Information) 
                 == DialogResult.Yes)
             {
-                if(servicio.Borrar(nroFactura))
+                if(BorrarVenta(nro))
 
                 {
                     MessageBox.Show("Factura eliminada", "Informe",
@@ -90,9 +89,15 @@ namespace FrontFarmaceutica.formularios
                 }
             }
         }
+
+        private bool BorrarVenta(int nro)
+        {
+            throw new NotImplementedException();
+        }
+
         private void VerFactura(int nro)
         {
-            FrmDetallesVentas frmDetallesFactura = new FrmDetallesVentas(nro, fabrica);
+            FrmDetallesVentas frmDetallesFactura = new FrmDetallesVentas(nro);
             frmDetallesFactura.Show();
         }
         private void FrmConsultarFacturas_Load(object sender, EventArgs e)

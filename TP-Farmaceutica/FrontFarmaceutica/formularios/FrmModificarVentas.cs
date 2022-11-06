@@ -1,6 +1,5 @@
 ﻿using DataApi.dominio;
 using FrontFarmaceutica.servicios;
-using FrontFarmaceutica.servicios.interfaz;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -122,10 +121,10 @@ namespace FrontFarmaceutica.formularios
             int art = item.Codigo;
             string nom = item.Descripcion;
             double pre = item.Precio;
-            Suministro a = new Suministro(art, nom, pre);
+            Suministro a = new Suministro(art, nom, pre, 1, 1,1);
             int cantidad = Convert.ToInt32(TbxCantidad.Text);
 
-            Detalle detalle = new Detalle(a, cantidad);
+            Detalle detalle = new Detalle(a, cantidad,1,true);
             venta.AgregarDetalle(detalle);
             DgvDetalles.Rows.Add(new object[] { a.Descripcion,
             cantidad, a.Precio});
@@ -172,7 +171,7 @@ namespace FrontFarmaceutica.formularios
             //lst.Add(new Parametro("@forma_pago", factura.FormaPago));
             //lst.Add(new Parametro("@fecha", factura.Fecha));
             //lst.Add(new Parametro("@cliente", factura.Cliente));
-            if (servicio.Actualizar(venta))
+            if (Actualizar(venta))
             {
                 MessageBox.Show("Factura modificada", "Informe",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -186,6 +185,12 @@ namespace FrontFarmaceutica.formularios
 
 
         }
+
+        private bool Actualizar(Venta venta)
+        {
+            throw new NotImplementedException();
+        }
+
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.Dispose();
