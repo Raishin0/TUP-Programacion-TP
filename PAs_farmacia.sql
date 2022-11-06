@@ -227,10 +227,11 @@ AS
 BEGIN
 	if exists(select cod_suministro from suministros where cod_suministro=@cod_suministro)
 	begin
-		delete cod_suministro where cod_suministro=@cod_suministro
+		delete suministros where cod_suministro=@cod_suministro
 	end
 END
 GO
+
 
 ----- Formularios
 create procedure consultar_ventas

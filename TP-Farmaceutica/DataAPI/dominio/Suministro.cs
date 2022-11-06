@@ -18,9 +18,9 @@ namespace DataApi.dominio
         public int Codigo { get { return codigo; } set { codigo = value; } }
         public string Descripcion { get { return descripcion; } set { descripcion = value; } }
         public double Precio { get { return precio; } set { precio = value; } }
-        public int VentaLibre { get => ventaLibre; set => ventaLibre = value; }
-        public int Tipo { get => tipo; set => tipo = value; }
-        public int Stock { get => stock; set => stock = value; }
+        public int VentaLibre { get { return ventaLibre; } set { ventaLibre = value; } }
+        public int Tipo { get { return tipo; } set { tipo = value; } }
+        public int Stock { get { return stock; } set { stock = value; } }
 
         public Suministro()
         {
@@ -29,7 +29,7 @@ namespace DataApi.dominio
             precio = 0;
             ventaLibre = -1;
             tipo = -1;
-            stock = 0;
+            stock = -1;
         }
         public Suministro(int codigo, string descripcion, double precio, int ventaLibre, int tipo, int stock)
         {

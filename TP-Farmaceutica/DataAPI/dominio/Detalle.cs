@@ -15,12 +15,12 @@ namespace DataApi.dominio
 
         public Suministro Suministro { get { return suministro; } set { suministro = value; } }
         public int Cantidad { get { return cantidad; } set { cantidad = value; } }
-        public double PrecioVenta { get => precioVenta; set => precioVenta = value; }
-        public bool Cubierto { get => cubierto; set => cubierto = value; }
+        public double PrecioVenta { get { return precioVenta; } set { precioVenta = value; } }
+        public bool Cubierto { get { return cubierto; } set { cubierto = value; } }
 
-        public Detalle(Suministro articulo, int cantidad, double precioVenta, bool cubierto)
+        public Detalle(Suministro suministro, int cantidad, double precioVenta, bool cubierto)
         {
-            this.suministro = articulo;
+            this.suministro = suministro;
             this.cantidad = cantidad;
             this.precioVenta = precioVenta;
             this.cubierto = cubierto;
@@ -28,7 +28,7 @@ namespace DataApi.dominio
 
         public double CalcularSubtotal()
         {
-            return suministro.Precio * cantidad;
+            return precioVenta * cantidad;
         }
 
         public override string ToString()

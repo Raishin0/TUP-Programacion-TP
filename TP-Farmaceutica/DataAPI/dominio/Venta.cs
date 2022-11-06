@@ -12,7 +12,6 @@ namespace DataApi.dominio
     {
         private int codigo;
         private DateTime fecha;
-        private int empleado;
         private string cliente;
         private int formaPago;
         private int obraSocial;
@@ -20,32 +19,29 @@ namespace DataApi.dominio
 
         public int Codigo { get { return codigo; } set { codigo = value; } }
         public DateTime Fecha { get { return fecha; } set { fecha = value; } }
-        public int FormaPago { get { return formaPago; } set { formaPago = value; } }
         public string Cliente { get { return cliente; } set { cliente = value; } }
+        public int FormaPago { get { return formaPago; } set { formaPago = value; } }
+        public int ObraSocial { get { return obraSocial; } set { obraSocial = value; } }
         public List<Detalle> Detalles { get { return detalles; } set { detalles = value; } }
-        public int Empleado { get => empleado; set => empleado = value; }
-        public int ObraSocial { get => obraSocial; set => obraSocial = value; }
 
         public Venta()
         {
             codigo = -1;
             fecha = DateTime.Now;
-            formaPago = -1;
             cliente = "";
-            detalles = new List<Detalle>();
-            empleado = -1;
+            formaPago = -1;
             obraSocial = -1;
+            detalles = new List<Detalle>();
         }
 
-        public Venta(int codigo, DateTime fecha, int formaPago, string cliente, int proveedor, int obraSocial)
+        public Venta(int codigo, DateTime fecha, int formaPago, string cliente, int obraSocial)
         {
             this.codigo = codigo;
             this.fecha = fecha;
-            this.formaPago = formaPago;
             this.cliente = cliente;
-            detalles = new List<Detalle>();
-            this.empleado = proveedor;
+            this.formaPago = formaPago;
             this.obraSocial = obraSocial;
+            detalles = new List<Detalle>();
         }
 
         public void AgregarDetalle(Detalle nuevoDetalle)

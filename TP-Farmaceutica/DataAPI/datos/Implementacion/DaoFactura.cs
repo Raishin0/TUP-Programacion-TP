@@ -119,7 +119,7 @@ namespace DataApi.datos.Implementacion
                     cmdDetalle = new SqlCommand("insertarDetalle", cnn, t);
                     cmdDetalle.CommandType = CommandType.StoredProcedure;
                     cmdDetalle.Parameters.AddWithValue("@nro_venta", nro);
-                    cmdDetalle.Parameters.AddWithValue("@id_articulo", item.Suministro.Codigo);
+                    cmdDetalle.Parameters.AddWithValue("@cod_suministro", item.Suministro.Codigo);
                     cmdDetalle.Parameters.AddWithValue("@cantidad", item.Cantidad);
                     cmdDetalle.Parameters.AddWithValue("@precio", item.PrecioVenta);
                     cmdDetalle.Parameters.AddWithValue("@cubierto", item.Cubierto);
@@ -171,7 +171,7 @@ namespace DataApi.datos.Implementacion
                     cmdDetalle = new SqlCommand("modificarDetalle", cnn, t);
                     cmdDetalle.CommandType = CommandType.StoredProcedure;
                     cmdDetalle.Parameters.AddWithValue("@nro_venta", venta.Codigo);
-                    cmdDetalle.Parameters.AddWithValue("@id_articulo", item.Suministro.Codigo);
+                    cmdDetalle.Parameters.AddWithValue("@cod_suministro", item.Suministro.Codigo);
                     cmdDetalle.Parameters.AddWithValue("@cantidad", item.Cantidad);
                     cmdDetalle.Parameters.AddWithValue("@precio", item.PrecioVenta);
                     cmdDetalle.Parameters.AddWithValue("@cubierto", item.Cubierto);
@@ -333,7 +333,7 @@ namespace DataApi.datos.Implementacion
                 int nro = int.Parse(dr["cod_suministro"].ToString());
                 string nombre = dr["descripcion"].ToString();
                 double precio = double.Parse(dr["precio_unitario"].ToString());
-                int ventaLibre = probar(dr["venta_libre"]);
+                int ventaLibre = probar(dr["venta_libre"].ToString());
                 int tipo = int.Parse(dr["cod_tipo_sum"].ToString());
                 int stock = int.Parse(dr["stock"].ToString());
 
@@ -398,15 +398,19 @@ namespace DataApi.datos.Implementacion
             return dt;
         }
 
-        public int probar(object valor)
+        public int probar(string valor)
         {
-            if (valor == null)
+            if (string.IsNullOrEmpty(valor))
             {
                 return -1;
             }
             else
             {
-                return (valor.ToString())? 0;
+                if(valor == "False")
+                {
+                    return 0;
+                }
+                return 1;
             }
         }
     }

@@ -49,9 +49,10 @@ namespace ApiFarmaceutica.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Intente en otro momento");
             }
         }
+        
         // GET api/<FarmaceuticaController>/5
         [HttpGet("/obrassociales")]
         public IActionResult GetObtenerObrasSociales()
@@ -65,9 +66,10 @@ namespace ApiFarmaceutica.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Intente en otro momento");
             }
         }
+        
         // GET api/<FarmaceuticaController>/5
         [HttpGet("/tipossuministros")]
         public IActionResult GetObtenerTiposSuministro()
@@ -81,24 +83,26 @@ namespace ApiFarmaceutica.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Intente en otro momento");
             }
         }
 
         // GET api/<FarmaceuticaController>/5
         [HttpGet("/ventas")]
-        public IActionResult GetObtenerVentasPorFiltros(DateTime desde, DateTime hasta, string? cliente="")
+        public IActionResult GetObtenerVentasPorFiltros(string desde, string hasta, string? cliente="")
         {
             List<Venta> ventas;
             try
             {
-                ventas = dataApi.ObtenerVentasPorFiltros(desde,hasta,cliente);
+                DateTime fechaInicio = DateTime.Parse(desde);
+                DateTime fechaFinal = DateTime.Parse(hasta);
+                ventas = dataApi.ObtenerVentasPorFiltros(fechaInicio, fechaFinal, cliente);
                 return Ok(ventas);
 
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
             }
         }
 
@@ -115,7 +119,7 @@ namespace ApiFarmaceutica.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Intente en otro momento");
             }
         }
 
@@ -131,23 +135,25 @@ namespace ApiFarmaceutica.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
             }
         }
 
         [HttpGet("/reporteventas")]
-        public IActionResult GetObtenerReporteVentas(DateTime desde, DateTime hasta)
+        public IActionResult GetObtenerReporteVentas(string desde, string hasta)
         {
             DataTable venta;
             try
             {
-                venta = dataApi.ObtenerReporteVentas(desde,hasta);
+                DateTime fechaInicio = DateTime.Parse(desde);
+                DateTime fechaFinal = DateTime.Parse(hasta);
+                venta = dataApi.ObtenerReporteVentas(fechaInicio, fechaFinal);
                 return Ok(JsonConvert.SerializeObject(venta));
 
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
             }
         }
         
@@ -163,7 +169,7 @@ namespace ApiFarmaceutica.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error ! Intente intente en otro momento");
+                return StatusCode(500, "Error ! Intente en otro momento");
             }
         }
 
@@ -263,6 +269,7 @@ namespace ApiFarmaceutica.Controllers
                 return StatusCode(500, "Error interno! Intente luego");
             }
         }
+        
         // DELETE api/<FarmaceuticaController>/5
         [HttpDelete("/suministro/{nro}")]
         public IActionResult DeleteBorrarSuministro(int nro)
