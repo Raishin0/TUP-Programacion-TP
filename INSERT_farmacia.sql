@@ -9,15 +9,15 @@ insert into Tipos_suministros values('Medicamentos')
 insert into Tipos_suministros values('Perfumes')
 insert into Tipos_suministros values('Otros')
 	 
-insert into Suministros values('Aspirina', 200, 1, 1)
-insert into Suministros values('Omeprazol', 150.5, 0, 1)
-insert into Suministros values('Ramipril', 100, 0, 1)
-insert into Suministros values('Paracetamol', 500.5, 1, 1)
-insert into Suministros values('Simvastatina', 120.5, 0, 1)
-insert into Suministros values('Amlodipina', 125.5, 0, 1)
-insert into Suministros values('One Million EDT', 500.5, null, 2)
-insert into Suministros values('Atonio Banderas', 700.5, null, 2)
-insert into Suministros values('Vendas', 400, null, 3)
+insert into Suministros values('Aspirina', 200, 1, 1, 25)
+insert into Suministros values('Omeprazol', 150.5, 0, 1, 20)
+insert into Suministros values('Ramipril', 100, 0, 1, 15)
+insert into Suministros values('Paracetamol', 500.5, 1, 1, 17)
+insert into Suministros values('Simvastatina', 120.5, 0, 1, 7)
+insert into Suministros values('Amlodipina', 125.5, 0, 1, 40)
+insert into Suministros values('One Million EDT', 500.5, null, 2,12)
+insert into Suministros values('Atonio Banderas', 700.5, null, 2,21)
+insert into Suministros values('Vendas', 400, null, 3,14)
 
 insert into Obras_sociales values('Sin OS')
 insert into Obras_sociales values('Pami')
@@ -59,19 +59,4 @@ insert into Detalles_ventas values(10,4,2,630,0)
 
 insert into Usuarios(nombre, constraseña) values('Carlos', PWDENCRYPT('aguanteBOCA12'))
 insert into Usuarios(nombre, constraseña) values('Lucia', PWDENCRYPT('hola123'))
-
-exec comprobarUsuario 'Carlos', 'aguanteBOCA12'
-exec comprobarUsuario 'Lucia', 'hola123'
-
-
-update Suministros set Stock = 25 where cod_suministro=1
-update Suministros set Stock = 20 where cod_suministro=2
-update Suministros set Stock = 15 where cod_suministro=3
-update Suministros set Stock = 17 where cod_suministro=4
-update Suministros set Stock = 07 where cod_suministro=5
-update Suministros set Stock = 40 where cod_suministro=6
-update Suministros set Stock = 12 where cod_suministro=7
-update Suministros set Stock = 21 where cod_suministro=8
-update Suministros set Stock = 14 where cod_suministro=9
-
-select * from Suministros
+insert into Usuarios(nombre, constraseña) values('Ad', PWDENCRYPT('123'))

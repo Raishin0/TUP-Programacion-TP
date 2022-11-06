@@ -1,134 +1,5 @@
---0.1
-
-alter proc pa_consultar_ventas 
-	@fecha1 datetime,
-	@fecha2 datetime,
-	@cliente varchar(100)=''
-as
-begin
-	if @fecha1 < @fecha2
-	begin
-		select v.nro_venta,
-		fecha,
-		cod_forma_pago,
-		cod_cliente,
-		cod_empleado
-		from Ventas v
-		where fecha between @fecha1 and @fecha2 and v.nro_venta like '%'+@cliente+'%'
-		order by 2 desc
-	end
-	else
-	begin
-		raiserror('Valores incorrectos',16,1)
-	end
-end
+use FARMACIA_progra
 go
-
-exec pa_consultar_ventas '1/1/2000', '10/12/2022'
-go
-
-
---0.2
-create proc pa_consultar_compras
-	@fecha1 datetime,
-	@fecha2 datetime 
-as
-begin
-	if @fecha1 < @fecha2
-	begin
-		select c.nro_compra,
-		fecha,
-		nom_repartidor repartidor,
-		nombre proveedor,
-		ape_empleado + ', ' + nom_empleado empleado,
-		forma_pago,
-		sum(dv.cantidad) cantidad,
-		sum(dv.cantidad * dv.precio_venta) importe_total		
-		from Compras c
-		join Detalles_compras dv on c.nro_compra = dv.nro_compra
-		join Proveedores p on c.cod_proveedor = p.cod_proveedor
-		join Empleados e on c.cod_empleado = e.cod_empleado
-		join Formas_pago f on c.cod_forma_pago = f.cod_forma_pago
-		where fecha between @fecha1 and @fecha2
-		group by c.nro_compra,fecha,
-		nom_repartidor,
-		nombre,
-		ape_empleado, nom_empleado,
-		forma_pago
-		order by 2
-	end
-	else
-	begin
-		raiserror('Valores incorrectos',16,1)
-	end
-end
-go
-
-exec pa_consultar_compras'1/1/2000', '10/12/2022'
-go
-
-
-alter proc pa_ventas_vendedor
-	@vendedor varchar(100),
-	@minimo int,
-	@fecha1 datetime,
-	@fecha2 datetime
-as
-begin 
-	select ape_empleado + ', ' + nom_empleado empleado,
-	isnull(sum(r.gasto_total),0) importe_receta,
-	sum(dv.gasto_total) importe_comun,
-	sum(dv.gasto_total)+isnull(sum(r.gasto_total),0) importe_total,
-	isnull(sum(r.cantidad_total),0) cantidad_receta,
-	sum(dv.cantidad_total) cantidad_comun,
-	sum(dv.cantidad_total)+isnull(sum(r.cantidad_total),0) cantidad_total
-	from Empleados e
-	join Ventas v on v.cod_empleado=e.cod_empleado
-	left join (select nro_venta,sum(precio_venta*cantidad) gasto_total,
-	sum(cantidad) cantidad_total from Detalles_ventas
-	group by nro_venta) dv
-	on v.nro_venta = dv.nro_venta
-	left join (select nro_venta,
-	sum(cantidad*precio_venta*(1-descuento*0.01)) gasto_total,
-	sum(cantidad) cantidad_total from Recetas r
-	join Cubiertos cu on cu.cod_cubierto = r.cod_cubierto
-	group by nro_venta) r
-	on v.nro_venta = r.nro_venta
-	group by e.cod_empleado, ape_empleado + ', ' + nom_empleado
-	having @minimo < (select count(distinct nro_venta) from ventas
-	where fecha between @fecha1 and @fecha2 and e.cod_empleado=cod_empleado)
-	and ape_empleado + ', ' + nom_empleado like '%'+@vendedor+'%'
-end
-go
-
-exec pa_ventas_vendedor '', 0, '1/1/2000', '1/12/2022'
-go
-
---3
-alter procedure pa_reembolso_obrasocial
-
-@fecha1 datetime,
-@fecha2 datetime
-as
- begin
-if @fecha1 < @fecha2 
-select year(fecha) anio, MONTH(fecha)mes, day(fecha)dia,
-nom_obra_social obra_social,
-count(r.cod_recetas) cantidad_recetas,
-sum(precio_venta*(descuento*0.01))total_cobrado,
-IIF(rembolsado=1,'Si', IIF(rembolsado=0,'No','Indefinido')) reembolso
-from Lotes_Rembolso lr
-join Recetas r on lr.cod_lote=r.cod_lote
-join Cubiertos c on c.cod_cubierto=r.cod_cubierto
-join Obras_sociales os on os.cod_obra_social=c.cod_obra_social
-where  fecha between @fecha1 and @fecha2
-group by fecha, nom_obra_social, rembolsado
-order by fecha desc, nom_obra_social
-end
-go
-exec pa_reembolso_obrasocial '1/1/2000', '1/12/2022'
-go
-
 
 --Login
 create proc comprobarUsuario
@@ -138,14 +9,15 @@ begin
 	if(exists (select * from Usuarios where nombre=@nombreUsuario  and PWDCOMPARE(@contrasenia, 
 	constraseña) = 1))
 	begin
-		return 1
+		select 1 as correcto
 	end
 	else
 	begin
-		raiserror('Nombre de usuario o constraseña incorrecta', 16, 1)
-		return 0
+		select 0 as correcto
 	end
 end
+go
+exec comprobarUsuario 'Carlos', 'aguanteBOCA12'
 
 -- proxima factura
 CREATE PROCEDURE proximaFactura
@@ -155,12 +27,30 @@ BEGIN
 	SET @next = (SELECT MAX(nro_venta)+1  FROM Ventas);
 END
 GO
-/****** Object:  StoredProcedure proximaFactura ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
+
+CREATE PROCEDURE consultarFormasPago
+AS
+BEGIN
+	
+	SELECT * from formas_pago;
+END
 GO
 
+CREATE PROCEDURE consultarObrasSociales
+AS
+BEGIN
+	
+	SELECT * from obras_sociales;
+END
+GO
+
+CREATE PROCEDURE consultarTiposSuministros
+AS
+BEGIN
+	
+	SELECT * from tipos_suministros;
+END
+GO
 
 --Suministros
 CREATE PROCEDURE consultarSuministros
@@ -170,41 +60,63 @@ BEGIN
 	SELECT * from suministros;
 END
 GO
-/****** Object:  StoredProcedure consultarSuministro ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
+
+
+CREATE PROCEDURE consultarVentas
+	@fecha1 datetime,
+	@fecha2 datetime,
+	@cliente varchar(255)
+AS
+BEGIN
+	
+	SELECT * from Ventas
+	where fecha between @fecha1 and @fecha2 
+	and cliente like '%'+@cliente+'%'
+END
 GO
 
+exec consultarVentas '1/1/2000', '12/12/2022', ''
+
+alter PROCEDURE consultarVenta
+	@nro_venta int
+AS
+BEGIN
+	SELECT Ventas.nro_venta, fecha, cliente,cod_forma_pago,cod_obra_social,
+	cod_detalle_venta,cantidad,precio_venta,cubierto,
+	suministros.cod_suministro, descripcion,precio_unitario,venta_libre,cod_tipo_sum,stock
+	from Ventas join detalles_ventas on Ventas.nro_venta = detalles_ventas.nro_venta
+	join suministros on detalles_ventas.cod_suministro = suministros.cod_suministro
+	where @nro_venta = Ventas.nro_venta
+END
+GO
+
+exec consultarVenta 1
+
 -- Maestro
-CREATE PROCEDURE insertarMaestro
+create PROCEDURE insertarMaestro
 	@fecha datetime,
 	@cliente varchar(255), 
-	@formaPago numeric(5,2),
-	@codigoOS numeric(8,2),
-	@presupuesto_nro int OUTPUT
+	@formaPago int,
+	@codigoOS int,
+	@nro_venta int OUTPUT
 AS
 BEGIN
 	INSERT INTO Ventas (fecha, cliente, cod_forma_pago, cod_obra_social)
     VALUES (@fecha,@cliente, @formaPago, @codigoOS);
     --Asignamos el valor del último ID autogenerado (obtenido --  
     --mediante la función SCOPE_IDENTITY() de SQLServer)	
-    SET @presupuesto_nro = SCOPE_IDENTITY();
+    SET @nro_venta = SCOPE_IDENTITY();
 
 END
 GO
-/****** Object:  StoredProcedure insertarMaestro ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 
 ----- Detalle
 create PROCEDURE insertarDetalle
 	@nro_venta int,
 	@cod_suministro int, 
 	@cantidad int, 
-	@precio int,
+	@precio money,
 	@cubierto bit
 AS
 BEGIN
@@ -214,12 +126,111 @@ BEGIN
   
 END
 GO
-/****** Object:  StoredProcedure insetarDetalle ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
+
+create PROCEDURE insertarSuministro
+	@descripcion varchar(255),
+	@precio_unitario money, 
+	@venta_libre bit,
+	@cod_tipo_sum int,
+	@stock int
+AS
+BEGIN
+	insert into suministros values( @descripcion,
+		@precio_unitario,
+		@venta_libre,
+		@cod_tipo_sum,
+		@stock)
+END
 GO
 
+
+create PROCEDURE modificarMaestro
+	@nro_venta int,
+	@fecha datetime,
+	@cliente varchar(255), 
+	@formaPago int,
+	@codigoOS int
+AS
+BEGIN
+	update Ventas 
+	set fecha=@fecha, cliente=@cliente, cod_forma_pago=@formaPago, cod_obra_social=@codigoOS
+    where @nro_venta=nro_venta
+END
+GO
+
+create PROCEDURE modificarDetalle
+	@nro_venta int,
+	@cod_suministro int, 
+	@cantidad int, 
+	@precio money,
+	@cubierto bit
+AS
+BEGIN
+	if exists(select cod_detalle_venta from Detalles_ventas where nro_venta=@nro_venta and cod_suministro=@cod_suministro)
+	begin
+		if @cantidad>0
+		begin
+			update Detalles_ventas 
+			set cantidad=@cantidad,precio_venta=@precio,cubierto=@cubierto
+			where nro_venta=@nro_venta and cod_suministro=@cod_suministro
+		end
+		else
+		begin 
+			delete Detalles_ventas 
+			where nro_venta=@nro_venta and cod_suministro=@cod_suministro
+		end
+	end
+	else
+	begin
+		INSERT INTO Detalles_ventas (nro_venta,cod_suministro,cantidad,precio_venta,cubierto)
+		VALUES (@nro_venta, @cod_suministro, @cantidad, @precio,@cubierto);
+	end
+END
+GO
+
+create PROCEDURE modificarSuministro
+	@cod_suministro int,
+	@descripcion varchar(255),
+	@precio_unitario money, 
+	@venta_libre bit,
+	@cod_tipo_sum int,
+	@stock int
+AS
+BEGIN
+	if exists(select cod_suministro from suministros where cod_suministro=@cod_suministro)
+		update suministros 
+		set descripcion=@descripcion,
+		precio_unitario=@precio_unitario,
+		venta_libre=@venta_libre,
+		cod_tipo_sum=@cod_tipo_sum,
+		stock=@stock
+		where cod_suministro=@cod_suministro
+END
+GO
+
+
+create PROCEDURE eliminarMaestro
+	@nro_venta int
+AS
+BEGIN
+	if exists(select nro_venta from ventas where nro_venta=@nro_venta)
+	begin
+		delete detalles_ventas where nro_venta=@nro_venta
+		delete ventas where nro_venta=@nro_venta
+	end
+END
+GO
+
+create PROCEDURE eliminarSuministro
+	@cod_suministro int
+AS
+BEGIN
+	if exists(select cod_suministro from suministros where cod_suministro=@cod_suministro)
+	begin
+		delete cod_suministro where cod_suministro=@cod_suministro
+	end
+END
+GO
 
 ----- Formularios
 create procedure consultar_ventas
@@ -261,24 +272,39 @@ begin
 		order by 1 desc
 	
 end
+go
 
------ trigger modificacino stock
+--triggerss
+create trigger NoRepetirNombres
+on Usuarios
+instead of insert
+as
+	if((select nombre from inserted) in (select nombre from usuarios))
+	begin
+		raiserror('Ese nombre se usuario ya ha sido utilizado', 16, 1)
+	end
+	else
+	begin
+		insert into Usuarios(nombre, constraseña) (select nombre, constraseña from inserted)
+	end
+go
+
 create trigger dis_mod_stock
- on Detalles_ventas
- for insert
- as
- declare @stock int
- select @stock= Stock from Suministros
-join inserted
-on inserted.cod_suministro=Suministros.cod_suministro
- if (@stock>=(select cantidad from inserted))
- update Suministros set Stock=Stock-inserted.cantidad
- from Suministros
- join inserted
- on inserted.cod_suministro=Suministros.cod_suministro
- else
- begin
- raiserror ('El stock en articulos es menor que la cantidad
- solicitada', 16, 1)
- rollback transaction
- end
+	on Detalles_ventas
+	for insert
+as
+	declare @stock int
+	select @stock= Stock from Suministros
+	join inserted
+	on inserted.cod_suministro=Suministros.cod_suministro
+	if (@stock>=(select cantidad from inserted))
+	update Suministros set Stock=Stock-inserted.cantidad
+	from Suministros
+	join inserted
+	on inserted.cod_suministro=Suministros.cod_suministro
+	else
+	begin
+	raiserror ('El stock en articulos es menor que la cantidad
+	solicitada', 16, 1)
+	rollback transaction
+end

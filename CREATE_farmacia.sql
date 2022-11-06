@@ -1,6 +1,6 @@
---create database FARMACIA_progra
---go
---use FARMACIA_progra
+create database FARMACIA_progra
+go
+use FARMACIA_progra
 go
 
 create table Formas_pago
@@ -18,7 +18,8 @@ create table Suministros
 descripcion varchar(100),
 precio_unitario money,
 venta_libre bit,
-cod_tipo_sum int
+cod_tipo_sum int,
+stock int,
 constraint pk_suministro primary key(cod_suministro),
 constraint fk_tipo foreign key (cod_tipo_sum)
 references Tipos_suministros (cod_tipo_sum)
@@ -62,19 +63,4 @@ nombre varchar(100) not null,
 constraseña varbinary(max) not null
 constraint pk_usuario primary key (cod_usuario)
 )
-
-alter trigger NoRepetirNombres
-on Usuarios
-instead of insert
-as
-	if((select nombre from inserted) in (select nombre from usuarios))
-	begin
-		raiserror('Ese nombre se usuario ya ha sido utilizado', 16, 1)
-	end
-	else
-	begin
-		insert into Usuarios(nombre, constraseña) (select nombre, constraseña from inserted)
-	end
-
-	alter table Suministros
-	add Stock int
+go

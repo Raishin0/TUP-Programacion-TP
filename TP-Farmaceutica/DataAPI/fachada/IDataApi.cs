@@ -10,14 +10,21 @@ namespace DataAPI.fachada
 {
     public interface IDataApi
     {
-        List<Suministro> ObtenerArticulos();
+        bool Login(string nombre, string password);
         Dictionary<int, string> ObtenerFormasPago();
+        Dictionary<int, string> ObtenerObrasSociales();
+        Dictionary<int, string> ObtenerTiposSuministro();
         int ObtenerProximoNro();
-        bool Crear(Venta oFactura);
-        bool Actualizar(Venta oFactura);
-        bool Borrar(int nro);
-        List<Venta> ObtenerFacturasPorFiltros(DateTime desde, DateTime hasta, string cliente);
-        Venta ObtenerFacturaPorNro(int nro);
-        DataTable ObtenerReporte(DateTime desde, DateTime hasta);
+        bool CrearVenta(Venta venta);
+        bool ActualizarVenta(Venta venta);
+        bool BorrarVenta(int nro);
+        bool CrearSuministro(Suministro suministro);
+        bool ActualizarSuministro(Suministro suministro);
+        bool BorrarSuministro(int nro);
+        List<Venta> ObtenerVentasPorFiltros(DateTime desde, DateTime hasta, string cliente);
+        List<Suministro> ObtenerSuministros();
+        Venta ObtenerVentaPorNro(int nro);
+        DataTable ObtenerReporteVentas(DateTime desde, DateTime hasta);
+        DataTable ObtenerReporteSuministros();
     }
 }

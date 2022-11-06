@@ -1,0 +1,12 @@
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\bin\Debug\net6.0\DataAPI.deps.json
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\bin\Debug\net6.0\DataAPI.dll
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\bin\Debug\net6.0\DataAPI.pdb
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.csproj.AssemblyReference.cache
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.AssemblyInfoInputs.cache
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.AssemblyInfo.cs
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.csproj.CoreCompileInputs.cache
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.dll
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\refint\DataAPI.dll
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.pdb
+D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\ref\DataAPI.dll

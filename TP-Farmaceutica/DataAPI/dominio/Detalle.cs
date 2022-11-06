@@ -8,29 +8,32 @@ namespace DataApi.dominio
 {
     public class Detalle
     {
-        private Suministro articulo;
+        private Suministro suministro;
         private int cantidad;
         private double precioVenta;
+        private bool cubierto;
 
-        public Suministro Articulo { get { return articulo; } set { articulo = value; } }
+        public Suministro Suministro { get { return suministro; } set { suministro = value; } }
         public int Cantidad { get { return cantidad; } set { cantidad = value; } }
         public double PrecioVenta { get => precioVenta; set => precioVenta = value; }
+        public bool Cubierto { get => cubierto; set => cubierto = value; }
 
-        public Detalle(Suministro articulo, int cantidad, double precioVenta)
+        public Detalle(Suministro articulo, int cantidad, double precioVenta, bool cubierto)
         {
-            this.articulo = articulo;
+            this.suministro = articulo;
             this.cantidad = cantidad;
             this.precioVenta = precioVenta;
+            this.cubierto = cubierto;
         }
 
         public double CalcularSubtotal()
         {
-            return articulo.Precio * cantidad;
+            return suministro.Precio * cantidad;
         }
 
         public override string ToString()
         {
-            return articulo.Codigo.ToString() + " " + cantidad.ToString();
+            return suministro.Codigo.ToString() + " " + cantidad.ToString();
         }
     }
 }
