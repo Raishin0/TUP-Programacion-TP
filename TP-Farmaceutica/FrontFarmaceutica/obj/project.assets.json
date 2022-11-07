@@ -544,24 +544,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fabio\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Juan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\FrontFarmaceutica.csproj",
+      "projectUniqueName": "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\FrontFarmaceutica.csproj",
       "projectName": "FrontFarmaceutica",
-      "projectPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\FrontFarmaceutica.csproj",
-      "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\obj\\",
+      "projectPath": "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\FrontFarmaceutica.csproj",
+      "packagesPath": "C:\\Users\\Juan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\FrontFarmaceutica\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Juan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -575,11 +570,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj": {
-              "projectPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj"
+            "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj": {
+              "projectPath": "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj"
             },
-            "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\NetFrameworkFront\\NetFrameworkFront.csproj": {
-              "projectPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\NetFrameworkFront\\NetFrameworkFront.csproj"
+            "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\NetFrameworkFront\\NetFrameworkFront.csproj": {
+              "projectPath": "C:\\Users\\Juan\\Desktop\\Nueva carpeta\\TUP-Programacion-TP\\TP-Farmaceutica\\NetFrameworkFront\\NetFrameworkFront.csproj"
             }
           }
         }
@@ -612,7 +607,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
