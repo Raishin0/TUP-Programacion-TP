@@ -71,7 +71,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(102, 107);
+            this.label2.Location = new System.Drawing.Point(64, 107);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 20);
@@ -80,7 +80,7 @@
             // 
             // TbxCliente
             // 
-            this.TbxCliente.Location = new System.Drawing.Point(157, 170);
+            this.TbxCliente.Location = new System.Drawing.Point(119, 170);
             this.TbxCliente.Margin = new System.Windows.Forms.Padding(5);
             this.TbxCliente.Name = "TbxCliente";
             this.TbxCliente.Size = new System.Drawing.Size(159, 27);
@@ -90,7 +90,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(94, 173);
+            this.label3.Location = new System.Drawing.Point(56, 173);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 20);
@@ -103,7 +103,7 @@
             this.DtpFecha.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(167)))), ((int)(((byte)(41)))));
             this.DtpFecha.Enabled = false;
             this.DtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFecha.Location = new System.Drawing.Point(157, 107);
+            this.DtpFecha.Location = new System.Drawing.Point(119, 107);
             this.DtpFecha.Margin = new System.Windows.Forms.Padding(5);
             this.DtpFecha.Name = "DtpFecha";
             this.DtpFecha.Size = new System.Drawing.Size(156, 27);
@@ -113,7 +113,7 @@
             // 
             this.CbxArticulos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbxArticulos.FormattingEnabled = true;
-            this.CbxArticulos.Location = new System.Drawing.Point(157, 250);
+            this.CbxArticulos.Location = new System.Drawing.Point(119, 250);
             this.CbxArticulos.Margin = new System.Windows.Forms.Padding(5);
             this.CbxArticulos.Name = "CbxArticulos";
             this.CbxArticulos.Size = new System.Drawing.Size(218, 28);
@@ -121,7 +121,7 @@
             // 
             // TbxCantidad
             // 
-            this.TbxCantidad.Location = new System.Drawing.Point(503, 252);
+            this.TbxCantidad.Location = new System.Drawing.Point(484, 252);
             this.TbxCantidad.Margin = new System.Windows.Forms.Padding(5);
             this.TbxCantidad.Name = "TbxCantidad";
             this.TbxCantidad.Size = new System.Drawing.Size(131, 27);
@@ -131,7 +131,7 @@
             // 
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAgregar.ForeColor = System.Drawing.Color.White;
-            this.BtnAgregar.Location = new System.Drawing.Point(645, 246);
+            this.BtnAgregar.Location = new System.Drawing.Point(626, 246);
             this.BtnAgregar.Margin = new System.Windows.Forms.Padding(5);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(101, 35);
@@ -252,7 +252,7 @@
             this.CbxFormaPago.Location = new System.Drawing.Point(491, 107);
             this.CbxFormaPago.Margin = new System.Windows.Forms.Padding(5);
             this.CbxFormaPago.Name = "CbxFormaPago";
-            this.CbxFormaPago.Size = new System.Drawing.Size(255, 28);
+            this.CbxFormaPago.Size = new System.Drawing.Size(236, 28);
             this.CbxFormaPago.TabIndex = 18;
             // 
             // lblFormaPago
@@ -273,14 +273,14 @@
             this.CbxObrasSociales.Location = new System.Drawing.Point(491, 165);
             this.CbxObrasSociales.Margin = new System.Windows.Forms.Padding(5);
             this.CbxObrasSociales.Name = "CbxObrasSociales";
-            this.CbxObrasSociales.Size = new System.Drawing.Size(255, 28);
+            this.CbxObrasSociales.Size = new System.Drawing.Size(236, 28);
             this.CbxObrasSociales.TabIndex = 20;
             // 
             // lblArticulo
             // 
             this.lblArticulo.AutoSize = true;
             this.lblArticulo.ForeColor = System.Drawing.Color.White;
-            this.lblArticulo.Location = new System.Drawing.Point(86, 253);
+            this.lblArticulo.Location = new System.Drawing.Point(48, 253);
             this.lblArticulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblArticulo.Name = "lblArticulo";
             this.lblArticulo.Size = new System.Drawing.Size(61, 20);
@@ -291,7 +291,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(424, 253);
+            this.label1.Location = new System.Drawing.Point(405, 253);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 20);

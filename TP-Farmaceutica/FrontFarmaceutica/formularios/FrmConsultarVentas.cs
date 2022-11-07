@@ -52,26 +52,28 @@ namespace FrontFarmaceutica.formularios
             if (DgvFacturas.CurrentCell.ColumnIndex == 5)
             {
                 QuitarVenta((int)DgvFacturas.CurrentRow.Cells[0].Value);
+                DgvFacturas.Rows.Remove(DgvFacturas.CurrentRow);
             }
-
-            if (DgvFacturas.CurrentCell.ColumnIndex == 6)
+            else
             {
-                ModificarVenta((int)DgvFacturas.CurrentRow.Cells[0].Value,
-                    (DateTime)DgvFacturas.CurrentRow.Cells[1].Value, 
-                    (int)DgvFacturas.CurrentRow.Cells[2].Value,
-                    (string)DgvFacturas.CurrentRow.Cells[3].Value,
-                    (int)DgvFacturas.CurrentRow.Cells[4].Value);
-            }
-            if (DgvFacturas.CurrentCell.ColumnIndex == 7)
-            {
-                VerFactura((int)DgvFacturas.CurrentRow.Cells[0].Value, this.urlApi);
+                if (DgvFacturas.CurrentCell.ColumnIndex == 6)
+                {
+                    ModificarVenta(ventas[DgvFacturas.CurrentRow.Index]);
+                    DgvFacturas.Rows.Clear();
+                }
+                else
+                {
+                    if (DgvFacturas.CurrentCell.ColumnIndex == 7)
+                    {
+                        VerFactura((int)DgvFacturas.CurrentRow.Cells[0].Value, this.urlApi);
+                    }
+                }
             }
         }
 
-        private void ModificarVenta(int nro, DateTime fecha, int formaPago, string cliente, int obraSocial)
+        private void ModificarVenta(Venta v)
         {
-            Venta venta = new Venta(nro, fecha, formaPago, cliente, obraSocial);
-            FrmModificarVentas frmModificarFactura = new FrmModificarVentas(venta,urlApi);
+            FrmModificarVentas frmModificarFactura = new FrmModificarVentas(v,urlApi);
             frmModificarFactura.Show();
         }
 
@@ -99,7 +101,7 @@ namespace FrontFarmaceutica.formularios
         {
             string url = urlApi + "venta/" + nro;
             var result = ClienteSingleton.GetInstance().DeleteAsync(url);
-            return result.Equals(true);
+            return result.Equals("true");
         }
 
         private void VerFactura(int nro, string urlApi)
@@ -107,7 +109,8 @@ namespace FrontFarmaceutica.formularios
             FrmDetallesVentas frmDetallesFactura = new FrmDetallesVentas(nro, urlApi);
             frmDetallesFactura.Show();
         }
-        private void FrmConsultarFacturas_Load(object sender, EventArgs e)
+        
+            private void FrmConsultarFacturas_Load(object sender, EventArgs e)
         {
             DtpPrimeraFecha.Format = DateTimePickerFormat.Short;
             DtpUltimaFecha.Format = DateTimePickerFormat.Short;

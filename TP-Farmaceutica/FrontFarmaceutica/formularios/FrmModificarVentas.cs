@@ -21,31 +21,34 @@ namespace FrontFarmaceutica.formularios
         public FrmModificarVentas(Venta venta, string urlApi)
         {
             this.venta = venta;
+            this.urlApi = urlApi;
             InitializeComponent();
         }
 
         private async void FrmModificarFactura_LoadAsync(object sender, EventArgs e)
         {
+            await CargarComboObrasSocialesAsync();
             await CargarArticulosAsync();
-            await CargarComboAsync();
+            await CargarComboFormasPagoAsync();
             CargarFactura();
+            LblFactura.Text = "Modificar Venta Nº" + venta.Codigo;
         }
         private async Task CargarArticulosAsync()
         {
-            string url = urlApi + "articulos";
+            string url = urlApi+"suministros";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             List<Suministro> lst = JsonConvert.DeserializeObject<List<Suministro>>(data);
             CbxArticulos.DataSource = lst;
             CbxArticulos.DisplayMember = "descripcion";
             CbxArticulos.ValueMember = "codigo";
-            CbxFormaPago.SelectedIndex = -1;
+            CbxArticulos.SelectedIndex = -1;
         }
 
 
 
-        private async Task CargarComboAsync()
+        private async Task CargarComboFormasPagoAsync()
         {
-            string url = urlApi + "formasDePago";
+            string url = urlApi + "formaspago";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             Dictionary<int, string> lst = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
             CbxFormaPago.DataSource = new BindingSource(lst, null);
@@ -54,25 +57,37 @@ namespace FrontFarmaceutica.formularios
             CbxFormaPago.SelectedIndex = -1;
         }
 
+        private async Task CargarComboObrasSocialesAsync()
+        {
+            string url = urlApi + "obrassociales";
+            var data = await ClienteSingleton.GetInstance().GetAsync(url);
+            Dictionary<int, string> lst = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
+            CbxObrasSociales.DataSource = new BindingSource(lst, null);
+            CbxObrasSociales.DisplayMember = "Value";
+            CbxObrasSociales.ValueMember = "Key";
+            CbxObrasSociales.SelectedIndex = -1;
+        }
 
-        private void CargarFactura()
+        private async Task ObtenerFacturaPorNroAsync(int nroVenta)
+        {
+            string url = urlApi + "venta/" + nroVenta;
+            var data = await ClienteSingleton.GetInstance().GetAsync(url);
+            venta = JsonConvert.DeserializeObject<Venta>(data);
+        }
+
+        private async void CargarFactura()
         {
             TbxCliente.Text = venta.Cliente;
             CbxFormaPago.SelectedValue = venta.FormaPago;
+            CbxObrasSociales.SelectedValue = venta.ObraSocial;
             DtpFecha.Value = venta.Fecha;
-            //List<Parametro> lst = new List<Parametro>();
-            //lst.Add(new Parametro("@factura_nro", factura.Codigo));
-            //DataTable detalles = gestor.ConsultaSQL("SP_CONSULTAR_DETALLE", lst);
-            //foreach (DataRow fila in detalles.Rows)
-            //{
-            //    int cod = (int)fila[0];
-            //    string nom = fila[1].ToString();
-            //    int can = (int)fila[2];
-            //    double pre = double.Parse(fila[3].ToString());
-            //    Articulo articulo = new Articulo(cod, nom, pre);
-            //    factura.Detalles.Add(new Detalle(articulo, can));
-            //    DgvDetalles.Rows.Add(new object[] { (string)fila[1], (int)fila[2], double.Parse(fila[3].ToString()) });
-            //}
+
+            await ObtenerFacturaPorNroAsync(venta.Codigo);
+            foreach (Detalle d in venta.Detalles)
+            {
+                DgvDetalles.Rows.Add(new object[] { d.Suministro.Descripcion, d.Cantidad, d.Suministro.Precio });
+            }
+            CalcularTotal();
         }
 
         private void CalcularTotal()
@@ -80,7 +95,46 @@ namespace FrontFarmaceutica.formularios
             double total = venta.CalcularTotal();
             TbxTotal.Text = total.ToString();
         }
-        private void BtnAgregar_Click(object sender, EventArgs e)
+
+        private async void GuardarFactura()
+        {
+            venta.Cliente = TbxCliente.Text;
+            venta.FormaPago = Convert.ToInt32(CbxFormaPago.SelectedValue);
+            venta.Fecha = DtpFecha.Value;
+            venta.ObraSocial = Convert.ToInt32(CbxObrasSociales.SelectedValue);
+
+            if (await ActualizarAsync(venta))
+            {
+                MessageBox.Show("Factura modificada", "Informe",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("ERROR. No se pudo modificar la factura",
+                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task<bool> ActualizarAsync(Venta venta)
+        {
+            string url = urlApi+"venta/" + venta.Codigo;
+            string facturaJson = JsonConvert.SerializeObject(venta);
+            var result = await ClienteSingleton.GetInstance().PutAsync(url, facturaJson);
+            return result.Equals("true");
+        }
+
+        private void DgvDetalles_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DgvDetalles.CurrentCell.ColumnIndex == 3)
+            {
+                venta.QuitarDetalle(DgvDetalles.CurrentRow.Index);
+                DgvDetalles.Rows.Remove(DgvDetalles.CurrentRow);
+                CalcularTotal();
+            }
+        }
+
+        private void BtnAgregar_Click_1(object sender, EventArgs e)
         {
             if (CbxArticulos.Text.Equals(String.Empty))
             {
@@ -121,27 +175,26 @@ namespace FrontFarmaceutica.formularios
             int art = item.Codigo;
             string nom = item.Descripcion;
             double pre = item.Precio;
-            Suministro a = new Suministro(art, nom, pre, 1, 1,1);
+            int tipo = item.Tipo;
+            int stk = item.Stock;
+            int libre = item.VentaLibre;
+            Suministro a = new Suministro(art, nom, pre, libre, tipo, stk);
             int cantidad = Convert.ToInt32(TbxCantidad.Text);
+            double precioVenta = pre;
+            bool cubierto = false;
 
-            Detalle detalle = new Detalle(a, cantidad,1,true);
+            Detalle detalle = new Detalle(a, cantidad, precioVenta, cubierto);
             venta.AgregarDetalle(detalle);
             DgvDetalles.Rows.Add(new object[] { a.Descripcion,
             cantidad, a.Precio});
             CalcularTotal();
         }
 
-        private void DgvDetalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            if (DgvDetalles.CurrentCell.ColumnIndex == 3 && DgvDetalles.Rows.Count > 0)
-            {
-                venta.QuitarDetalle(DgvDetalles.CurrentRow.Index);
-                //click button:
-                DgvDetalles.Rows.Remove(DgvDetalles.CurrentRow);
-                //presupuesto.quitarDetalle();
-                CalcularTotal();
-            }
+            this.Dispose();
         }
+
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             if (TbxCliente.Text == "")
@@ -157,43 +210,6 @@ namespace FrontFarmaceutica.formularios
                 return;
             }
             GuardarFactura();
-        }
-
-
-        private void GuardarFactura()
-        {
-            venta.Cliente = TbxCliente.Text;
-            venta.FormaPago = Convert.ToInt32(CbxFormaPago.SelectedValue);
-            venta.Fecha = DtpFecha.Value;
-
-            //List<Parametro> lst = new List<Parametro>();
-            //lst.Add(new Parametro("@factura_nro", factura.Codigo));
-            //lst.Add(new Parametro("@forma_pago", factura.FormaPago));
-            //lst.Add(new Parametro("@fecha", factura.Fecha));
-            //lst.Add(new Parametro("@cliente", factura.Cliente));
-            if (Actualizar(venta))
-            {
-                MessageBox.Show("Factura modificada", "Informe",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
-            }
-            else
-            {
-                MessageBox.Show("ERROR. No se pudo modificar la factura",
-                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-        }
-
-        private bool Actualizar(Venta venta)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void BtnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
         }
     }
 }

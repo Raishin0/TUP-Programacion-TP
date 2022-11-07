@@ -92,17 +92,17 @@ namespace ApiFarmaceutica.Controllers
         public IActionResult GetObtenerVentasPorFiltros(string desde, string hasta, string cliente="")
         {
             List<Venta> ventas;
-            //try
-            //{
+            try
+            {
                 DateTime fechaInicio = DateTime.Parse(desde);
                 DateTime fechaFinal = DateTime.Parse(hasta);
                 ventas = dataApi.ObtenerVentasPorFiltros(fechaInicio, fechaFinal, cliente);
                 return Ok(ventas);
-            //}
-            /*catch (Exception)
+            }
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
-            }*/
+            }
         }
 
         // GET api/<FarmaceuticaController>/5
