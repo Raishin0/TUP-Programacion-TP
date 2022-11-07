@@ -36,10 +36,10 @@ namespace FrontFarmaceutica.formularios
 
         private async Task<bool> LoginAsync(string usuario, string password)
         {
-            string url = urlApi + string.Format("login?nombre={0}&contrasenia={1}", usuario, password);
+            string url = urlApi + string.Format("login?nombre={0}&password={1}", usuario, password);
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
-            int value = JsonConvert.DeserializeObject<int>(data);
-            return value > 0;
+            bool value = JsonConvert.DeserializeObject<bool>(data);
+            return value;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -51,6 +51,20 @@ namespace FrontFarmaceutica.formularios
             {
                 Application.Exit();
             }
+        }
+
+        private void pbContraNoVisible_Click(object sender, EventArgs e)
+        {
+            pbContraNoVisible.Visible = false;
+            pbContraVisible.Visible = true;
+            TbxContrasenia.UseSystemPasswordChar = false;
+        }
+
+        private void pbContraVisible_Click(object sender, EventArgs e)
+        {
+            pbContraVisible.Visible = false;
+            pbContraNoVisible.Visible = true;
+            TbxContrasenia.UseSystemPasswordChar = true;
         }
     }
 }

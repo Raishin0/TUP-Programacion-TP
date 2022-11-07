@@ -2,7 +2,7 @@ use FARMACIA_progra
 go
 
 --Login
-create proc comprobarUsuario
+alter proc comprobarUsuario
 @nombreUsuario varchar(100), @contrasenia varchar(100)
 as
 begin
@@ -77,7 +77,7 @@ GO
 
 exec consultarVentas '1/1/2000', '12/12/2022', ''
 
-alter PROCEDURE consultarVenta
+create PROCEDURE consultarVenta
 	@nro_venta int
 AS
 BEGIN
@@ -215,8 +215,9 @@ AS
 BEGIN
 	if exists(select nro_venta from ventas where nro_venta=@nro_venta)
 	begin
-		delete detalles_ventas where nro_venta=@nro_venta
-		delete ventas where nro_venta=@nro_venta
+		update ventas
+		set habilitada = 0
+		where nro_venta=@nro_vent
 	end
 END
 GO
@@ -321,3 +322,6 @@ as
 	solicitada', 16, 1)
 	rollback transaction
 end
+
+select * from ventas
+

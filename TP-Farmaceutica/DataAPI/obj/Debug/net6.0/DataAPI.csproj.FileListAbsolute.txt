@@ -10,3 +10,15 @@ D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\o
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\refint\DataAPI.dll
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.pdb
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\ref\DataAPI.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\bin\Debug\net6.0\DataAPI.deps.json
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\bin\Debug\net6.0\DataAPI.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\bin\Debug\net6.0\DataAPI.pdb
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.csproj.AssemblyReference.cache
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.AssemblyInfoInputs.cache
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.AssemblyInfo.cs
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.csproj.CoreCompileInputs.cache
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\refint\DataAPI.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\DataAPI.pdb
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\DataAPI\obj\Debug\net6.0\ref\DataAPI.dll

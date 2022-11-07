@@ -30,7 +30,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(correcto);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error de sesion! Intente de nuevo");
             }
@@ -47,7 +47,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(data);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Intente en otro momento");
             }
@@ -64,7 +64,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(data);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Intente en otro momento");
             }
@@ -81,7 +81,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(data);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Intente en otro momento");
             }
@@ -89,21 +89,20 @@ namespace ApiFarmaceutica.Controllers
 
         // GET api/<FarmaceuticaController>/5
         [HttpGet("/ventas")]
-        public IActionResult GetObtenerVentasPorFiltros(string desde, string hasta, string? cliente="")
+        public IActionResult GetObtenerVentasPorFiltros(string desde, string hasta, string cliente="")
         {
             List<Venta> ventas;
-            try
-            {
+            //try
+            //{
                 DateTime fechaInicio = DateTime.Parse(desde);
                 DateTime fechaFinal = DateTime.Parse(hasta);
                 ventas = dataApi.ObtenerVentasPorFiltros(fechaInicio, fechaFinal, cliente);
                 return Ok(ventas);
-
-            }
-            catch (Exception ex)
+            //}
+            /*catch (Exception)
             {
                 return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
-            }
+            }*/
         }
 
         // GET api/<FarmaceuticaController>/5
@@ -117,7 +116,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(sums);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Intente en otro momento");
             }
@@ -133,9 +132,24 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(venta);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
+            }
+        }
+
+        [HttpGet("/NroProximaVenta")]
+        public IActionResult GetObtenerNroProximaVenta()
+        {
+            int nro;
+            try
+            {
+                nro = dataApi.ObtenerProximoNro();
+                return Ok(nro);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Error ! Intente en otro momento");
             }
         }
 
@@ -151,7 +165,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(JsonConvert.SerializeObject(venta));
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
             }
@@ -167,7 +181,7 @@ namespace ApiFarmaceutica.Controllers
                 return Ok(JsonConvert.SerializeObject(venta));
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error ! Intente en otro momento");
             }
@@ -186,7 +200,7 @@ namespace ApiFarmaceutica.Controllers
 
                 return Ok(dataApi.CrearVenta(venta));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error interno! Intente luego");
             }
@@ -205,7 +219,7 @@ namespace ApiFarmaceutica.Controllers
 
                 return Ok(dataApi.CrearSuministro(suministro));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error interno! Intente luego");
             }
@@ -225,7 +239,7 @@ namespace ApiFarmaceutica.Controllers
 
                 return Ok(dataApi.ActualizarVenta(venta));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error interno! Intente luego");
             }
@@ -245,7 +259,7 @@ namespace ApiFarmaceutica.Controllers
 
                 return Ok(dataApi.ActualizarSuministro(suministro));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error interno! Intente luego");
             }
@@ -257,14 +271,14 @@ namespace ApiFarmaceutica.Controllers
         {
             try
             {
-                if (nro == null)
+                if (nro <= 0)
                 {
                     return BadRequest("Datos incorrectos!");
                 }
 
                 return Ok(dataApi.BorrarVenta(nro));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error interno! Intente luego");
             }
@@ -283,7 +297,7 @@ namespace ApiFarmaceutica.Controllers
 
                 return Ok(dataApi.BorrarSuministro(nro));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Error interno! Intente luego");
             }

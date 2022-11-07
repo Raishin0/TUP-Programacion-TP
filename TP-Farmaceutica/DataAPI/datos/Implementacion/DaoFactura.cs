@@ -315,6 +315,10 @@ namespace DataApi.datos.Implementacion
                 factura.Cliente = row["cliente"].ToString();
                 factura.FormaPago = int.Parse(row["cod_forma_pago"].ToString());
                 factura.ObraSocial = int.Parse(row["cod_obra_social"].ToString());
+                if (row["habilitada"] != DBNull.Value) 
+                    factura.Habilitada = Convert.ToBoolean(row["habilitada"]);
+                else
+                    factura.Habilitada = false;
                 facturas.Add(factura);
             }
 

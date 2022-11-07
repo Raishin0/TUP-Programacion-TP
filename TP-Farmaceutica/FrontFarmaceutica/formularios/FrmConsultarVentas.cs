@@ -16,23 +16,29 @@ namespace FrontFarmaceutica.formularios
     public partial class FrmConsultarVentas : Form
     {
         string urlApi;
-
+        List<Venta> ventas, ventasEnPapelera;
         public FrmConsultarVentas(string urlApi)
         {
             this.urlApi = urlApi;
             InitializeComponent();
+            ventas = new List<Venta>();
+            ventasEnPapelera = new List<Venta>();
         }
 
         private async Task CargarFacturasAsync()
         {
-            string url = urlApi + string.Format("ventas?inicio={0}&final={1}&cliente={2}",
+            string url = urlApi + string.Format("ventas?desde={0}&hasta={1}&cliente={2}",
                 DtpPrimeraFecha.Value, DtpUltimaFecha.Value, TbxCliente.Text);
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             List<Venta> lst = JsonConvert.DeserializeObject<List<Venta>>(data);
-            DgvFacturas.Rows.Clear();
-            foreach(Venta fila in lst)
+            ventas.Clear();
+            ventasEnPapelera.Clear();
+            foreach(Venta v in lst)
             {
-                DgvFacturas.Rows.Add(new object[] { fila.Codigo, fila.Fecha, fila.FormaPago, fila.Cliente});
+                if (v.Habilitada)
+                    ventas.Add(v);
+                else
+                    ventasEnPapelera.Add(v);
             }
         }
 
@@ -58,7 +64,7 @@ namespace FrontFarmaceutica.formularios
             }
             if (DgvFacturas.CurrentCell.ColumnIndex == 7)
             {
-                VerFactura((int)DgvFacturas.CurrentRow.Cells[0].Value);
+                VerFactura((int)DgvFacturas.CurrentRow.Cells[0].Value, this.urlApi);
             }
         }
 
@@ -76,7 +82,6 @@ namespace FrontFarmaceutica.formularios
                 == DialogResult.Yes)
             {
                 if(BorrarVenta(nro))
-
                 {
                     MessageBox.Show("Factura eliminada", "Informe",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -92,12 +97,14 @@ namespace FrontFarmaceutica.formularios
 
         private bool BorrarVenta(int nro)
         {
-            throw new NotImplementedException();
+            string url = urlApi + "venta/" + nro;
+            var result = ClienteSingleton.GetInstance().DeleteAsync(url);
+            return result.Equals(true);
         }
 
-        private void VerFactura(int nro)
+        private void VerFactura(int nro, string urlApi)
         {
-            FrmDetallesVentas frmDetallesFactura = new FrmDetallesVentas(nro);
+            FrmDetallesVentas frmDetallesFactura = new FrmDetallesVentas(nro, urlApi);
             frmDetallesFactura.Show();
         }
         private void FrmConsultarFacturas_Load(object sender, EventArgs e)
@@ -107,9 +114,35 @@ namespace FrontFarmaceutica.formularios
             DtpUltimaFecha.Value = DateTime.Today;
         }
 
-        private void BtnGenerar_Click(object sender, EventArgs e)
+        private void ckbVentasEnPapelera_CheckedChanged(object sender, EventArgs e)
         {
-            CargarFacturasAsync();
+            DgvFacturas.Rows.Clear();
+            if (ckbVentasEnPapelera.Checked)
+                DgvFacturas.Columns["Borrar"].Visible =
+                    DgvFacturas.Columns["Modificar"].Visible = false;
+            else
+                DgvFacturas.Columns["Borrar"].Visible =
+                    DgvFacturas.Columns["Modificar"].Visible = true;
+        }
+
+        private async void BtnGenerar_Click(object sender, EventArgs e)
+        {
+            await CargarFacturasAsync();
+            DgvFacturas.Rows.Clear();
+            if (ckbVentasEnPapelera.Checked)
+            {
+                foreach (Venta v in ventasEnPapelera)
+                {
+                    DgvFacturas.Rows.Add(new object[] { v.Codigo, v.Fecha, v.FormaPago, v.Cliente });
+                }
+            }
+            else
+            {
+                foreach (Venta v in ventas)
+                {
+                    DgvFacturas.Rows.Add(new object[] { v.Codigo, v.Fecha, v.FormaPago, v.Cliente });
+                }
+            }
         }
     }
 }

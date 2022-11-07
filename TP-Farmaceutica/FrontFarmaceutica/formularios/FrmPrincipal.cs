@@ -14,7 +14,6 @@ namespace FrontFarmaceutica.formularios
 {
     public partial class FrmPrincipal : Form
     {
-
         string urlApi = "http://localhost:5023/";
         public FrmPrincipal()
         {

@@ -15,12 +15,14 @@ namespace FrontFarmaceutica.formularios
 {
     public partial class FrmDetallesVentas : Form
     {
-        string urlApi = "http://localhost:5023/";
+        string urlApi;
         int nroVenta;
         Venta venta;
-        public FrmDetallesVentas(int nroVenta)
+        public FrmDetallesVentas(int nroVenta, string urlApi)
         {
+            this.urlApi = urlApi;
             this.nroVenta = nroVenta;
+            venta = new Venta();
             InitializeComponent();
         }
 
@@ -30,11 +32,9 @@ namespace FrontFarmaceutica.formularios
             CargarFactura();
         }
     
-
-
         private async Task CargarComboAsync()
         {
-            string url = urlApi + "formasDePago";
+            string url = urlApi + "formaspago";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             Dictionary<int, string> lst = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
             CbxFormaPago.DataSource = new BindingSource(lst, null);
@@ -44,9 +44,9 @@ namespace FrontFarmaceutica.formularios
         }
 
 
-        private void CargarFactura()
+        private async void CargarFactura()
         {
-            venta = ObtenerFacturaPorNro(nroVenta);
+            await ObtenerFacturaPorNroAsync(nroVenta);
             TbxCliente.Text = venta.Cliente;
             CbxFormaPago.SelectedValue = venta.FormaPago;
             DtpFecha.Value = venta.Fecha;
@@ -58,9 +58,11 @@ namespace FrontFarmaceutica.formularios
             CalcularTotal();
         }
 
-        private Venta ObtenerFacturaPorNro(int nroVenta)
+        private async Task ObtenerFacturaPorNroAsync(int nroVenta)
         {
-            throw new NotImplementedException();
+            string url = urlApi + "venta/" + nroVenta;
+            var data = await ClienteSingleton.GetInstance().GetAsync(url);
+            venta = JsonConvert.DeserializeObject<Venta>(data);
         }
 
         private void CalcularTotal()

@@ -20,18 +20,20 @@ namespace FrontFarmaceutica.formularios
     {
         string urlApi;
         Venta nueva;
+
         public FrmNuevaVenta(string urlApi)
         {
             this.urlApi = urlApi;
+            nueva = new Venta();
             InitializeComponent();
         }
 
         private async void FrmNuevaFactura_Load(object sender, EventArgs e)
         {
             nueva = new Venta();
-
+            await CargarComboObrasSocialesAsync();
             await CargarArticulosAsync();
-            await CargarComboAsync();
+            await CargarComboFormasPagoAsync();
             await ProximaFacturaAsync();
             DtpFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             TbxCliente.Text = "CONSUMIDOR FINAL";
@@ -39,19 +41,19 @@ namespace FrontFarmaceutica.formularios
 
         private async Task CargarArticulosAsync()
         {
-            string url = urlApi+"articulos";
+            string url = urlApi+"suministros";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             List<Suministro> lst = JsonConvert.DeserializeObject<List<Suministro>>(data);
             CbxArticulos.DataSource = lst;
             CbxArticulos.DisplayMember = "descripcion";
             CbxArticulos.ValueMember = "codigo";
-            CbxFormaPago.SelectedIndex = -1;
+            CbxArticulos.SelectedIndex = -1;
         }
 
 
-        private async Task CargarComboAsync()
+        private async Task CargarComboFormasPagoAsync()
         {
-            string url = urlApi + "formasDePago";
+            string url = urlApi + "formaspago";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             Dictionary<int,string> lst = JsonConvert.DeserializeObject<Dictionary<int, string> > (data);
             CbxFormaPago.DataSource = new BindingSource(lst, null);
@@ -60,13 +62,24 @@ namespace FrontFarmaceutica.formularios
             CbxFormaPago.SelectedIndex = -1;
         }
 
+        private async Task CargarComboObrasSocialesAsync()
+        {
+            string url = urlApi + "obrassociales";
+            var data = await ClienteSingleton.GetInstance().GetAsync(url);
+            Dictionary<int, string> lst = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
+            CbxObrasSociales.DataSource = new BindingSource(lst, null);
+            CbxObrasSociales.DisplayMember = "Value";
+            CbxObrasSociales.ValueMember = "Key";
+            CbxObrasSociales.SelectedIndex = -1;
+        }
+
         private async Task ProximaFacturaAsync()
         {
-            string url = urlApi + "proximoNro";
+            string url = urlApi + "NroProximaVenta";
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             int next = JsonConvert.DeserializeObject<int>(data);
             if (next > 0)
-                LblFactura.Text = "Factura Nº: " + next.ToString();
+                LblFactura.Text = "Venta Nº: " + next.ToString();
             else
                 MessageBox.Show("Error de datos. No se puede obtener Nº de presupuesto!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -124,7 +137,7 @@ namespace FrontFarmaceutica.formularios
             int libre = item.VentaLibre;
             Suministro a = new Suministro(art, nom, pre,libre,tipo,stk);
             int cantidad = Convert.ToInt32(TbxCantidad.Text);
-            double precioVenta = 0;
+            double precioVenta = pre;
             bool cubierto=false;
 
             Detalle detalle = new Detalle(a, cantidad, precioVenta, cubierto);
@@ -171,24 +184,25 @@ namespace FrontFarmaceutica.formularios
                 "Control", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            GuardarFactura();
+            GuardarVenta();
         }
-        private async Task<bool> GuardarFacturaAsync(Venta oVenta)
+        private async Task<bool> GuardarVentaAsync(Venta oVenta)
         {
-            string url = urlApi+"factura";
+            string url = urlApi+"venta";
             string facturaJson = JsonConvert.SerializeObject(oVenta);
             var result = await ClienteSingleton.GetInstance().PostAsync(url, facturaJson);
             return result.Equals("true");
         }
 
-        private async void GuardarFactura()
+        private async void GuardarVenta()
         {
             nueva.Cliente = TbxCliente.Text;
             nueva.FormaPago = Convert.ToInt32(CbxFormaPago.SelectedValue);
+            nueva.ObraSocial = Convert.ToInt32(CbxObrasSociales.SelectedValue);
             nueva.Fecha = DtpFecha.Value;
-            if (await GuardarFacturaAsync(nueva))
+            if (await GuardarVentaAsync(nueva))
             {
-                MessageBox.Show("Factura registrada", "Informe",
+                MessageBox.Show("Venta registrada", "Informe",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
             }
@@ -197,8 +211,6 @@ namespace FrontFarmaceutica.formularios
                 MessageBox.Show("ERROR. No se pudo registrar la factura",
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
     }
 }

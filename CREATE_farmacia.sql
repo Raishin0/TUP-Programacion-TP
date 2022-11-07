@@ -35,7 +35,8 @@ create table Ventas
 fecha datetime,
 cliente varchar(100),
 cod_forma_pago int,
-cod_obra_social int
+cod_obra_social int,
+habilitada bit
 constraint pk_venta primary key(nro_venta),
 constraint fk_pago_v foreign key (cod_forma_pago)
 references formas_pago(cod_forma_pago),
