@@ -16,29 +16,49 @@ namespace FrontFarmaceutica.formularios
     public partial class FrmConsultarVentas : Form
     {
         string urlApi;
-        List<Venta> ventas, ventasEnPapelera;
+        List<Venta> ventas;
+        Dictionary<int, string> formas;
+        Dictionary<int, string> obras;
         public FrmConsultarVentas(string urlApi)
         {
             this.urlApi = urlApi;
             InitializeComponent();
             ventas = new List<Venta>();
-            ventasEnPapelera = new List<Venta>();
+        }
+        private async Task CargarComboAsync()
+        {
+            string url = urlApi + "formaspago";
+            var data = await ClienteSingleton.GetInstance().GetAsync(url);
+            formas = JsonConvert.DeserializeObject<Dictionary<int, string>>(data);
+
+            url = urlApi + "obrassociales";
+            var data2 = await ClienteSingleton.GetInstance().GetAsync(url);
+            obras = JsonConvert.DeserializeObject<Dictionary<int, string>>(data2);
+
         }
 
         private async Task CargarFacturasAsync()
         {
-            string url = urlApi + string.Format("ventas?desde={0}&hasta={1}&cliente={2}",
-                DtpPrimeraFecha.Value, DtpUltimaFecha.Value, TbxCliente.Text);
+            string url;
+            if (!ckbVentasEnPapelera.Checked)
+            {
+                url = urlApi + string.Format("ventas?desde={0}&hasta={1}&cliente={2}",
+                    DtpPrimeraFecha.Value, DtpUltimaFecha.Value, TbxCliente.Text);
+            }
+            else
+            {
+                url = urlApi + string.Format("ventasDeshabilitadas?desde={0}&hasta={1}&cliente={2}",
+                    DtpPrimeraFecha.Value, DtpUltimaFecha.Value, TbxCliente.Text);
+            }
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             List<Venta> lst = JsonConvert.DeserializeObject<List<Venta>>(data);
             ventas.Clear();
-            ventasEnPapelera.Clear();
-            foreach(Venta v in lst)
+            if(lst != null)
             {
-                if (v.Habilitada)
+                foreach (Venta v in lst)
+                {
                     ventas.Add(v);
-                else
-                    ventasEnPapelera.Add(v);
+                }
             }
         }
 
@@ -51,15 +71,13 @@ namespace FrontFarmaceutica.formularios
         {
             if (DgvFacturas.CurrentCell.ColumnIndex == 5)
             {
-                QuitarVenta((int)DgvFacturas.CurrentRow.Cells[0].Value);
-                DgvFacturas.Rows.Remove(DgvFacturas.CurrentRow);
+                QuitarVentaAsync((int)DgvFacturas.CurrentRow.Cells[0].Value);
             }
             else
             {
                 if (DgvFacturas.CurrentCell.ColumnIndex == 6)
                 {
                     ModificarVenta(ventas[DgvFacturas.CurrentRow.Index]);
-                    DgvFacturas.Rows.Clear();
                 }
                 else
                 {
@@ -77,13 +95,13 @@ namespace FrontFarmaceutica.formularios
             frmModificarFactura.Show();
         }
 
-        private void QuitarVenta(int nro)
+        private async Task QuitarVentaAsync(int nro)
         {
             if (MessageBox.Show($"Seguro que quiere quitar la factura Nº{nro}?",
                 "Borrar",MessageBoxButtons.YesNo,MessageBoxIcon.Information) 
                 == DialogResult.Yes)
             {
-                if(BorrarVenta(nro))
+                if(await BorrarVentaAsync(nro))
                 {
                     MessageBox.Show("Factura eliminada", "Informe",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -97,11 +115,12 @@ namespace FrontFarmaceutica.formularios
             }
         }
 
-        private bool BorrarVenta(int nro)
+        private async Task<bool> BorrarVentaAsync(int nro)
         {
             string url = urlApi + "venta/" + nro;
-            var result = ClienteSingleton.GetInstance().DeleteAsync(url);
-            return result.Equals("true");
+            var data = await ClienteSingleton.GetInstance().DeleteAsync(url);
+            bool res = JsonConvert.DeserializeObject<bool>(data);
+            return res;
         }
 
         private void VerFactura(int nro, string urlApi)
@@ -110,41 +129,25 @@ namespace FrontFarmaceutica.formularios
             frmDetallesFactura.Show();
         }
         
-            private void FrmConsultarFacturas_Load(object sender, EventArgs e)
+            private async void FrmConsultarFacturas_Load(object sender, EventArgs e)
         {
             DtpPrimeraFecha.Format = DateTimePickerFormat.Short;
             DtpUltimaFecha.Format = DateTimePickerFormat.Short;
             DtpUltimaFecha.Value = DateTime.Today;
+            await CargarComboAsync();
         }
 
         private void ckbVentasEnPapelera_CheckedChanged(object sender, EventArgs e)
         {
-            DgvFacturas.Rows.Clear();
-            if (ckbVentasEnPapelera.Checked)
-                DgvFacturas.Columns["Borrar"].Visible =
-                    DgvFacturas.Columns["Modificar"].Visible = false;
-            else
-                DgvFacturas.Columns["Borrar"].Visible =
-                    DgvFacturas.Columns["Modificar"].Visible = true;
         }
 
         private async void BtnGenerar_Click(object sender, EventArgs e)
         {
             await CargarFacturasAsync();
             DgvFacturas.Rows.Clear();
-            if (ckbVentasEnPapelera.Checked)
+            foreach (Venta v in ventas)
             {
-                foreach (Venta v in ventasEnPapelera)
-                {
-                    DgvFacturas.Rows.Add(new object[] { v.Codigo, v.Fecha, v.FormaPago, v.Cliente });
-                }
-            }
-            else
-            {
-                foreach (Venta v in ventas)
-                {
-                    DgvFacturas.Rows.Add(new object[] { v.Codigo, v.Fecha, v.FormaPago, v.Cliente });
-                }
+                DgvFacturas.Rows.Add(new object[] { v.Codigo, v.Fecha, v.Cliente, formas[v.FormaPago],obras[v.ObraSocial],null, null, null, v.FormaPago, v.ObraSocial });
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetFrameworkFront;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,19 +11,19 @@ using System.Windows.Forms;
 
 namespace FrontFarmaceutica.formularios
 {
-    public partial class frmPrincipalFacha : Form
+    public partial class FrmPrincipal : Form
     {
         string urlApi = "http://localhost:5191/";
         bool sideBarExpandida;
         bool reportesMenuExpandido, ventasMenuExpandido, suministrosMenuExpandido;
-        public frmPrincipalFacha()
+        public FrmPrincipal()
         {
             InitializeComponent();
         }
 
         private void SelectorBotones(bool selector)
         {
-            this.btnSalir.Enabled =
+            this.btnAcercade.Enabled =
                 this.btnReportes.Enabled =
                 this.btnVentas.Enabled =
                 this.btnSuministros.Enabled = selector;
@@ -202,28 +203,34 @@ namespace FrontFarmaceutica.formularios
         // Suminitros
         private void btnNuevoSuministro_Click(object sender, EventArgs e)
         {
-
+            new FrmNuevoSuministro(urlApi).ShowDialog();
         }
 
         private void btnConsultarSuministro_Click(object sender, EventArgs e)
         {
-
+            new FrmConsultarSuministros(urlApi).ShowDialog();
         }
 
         private void btnModificarSuministro_Click(object sender, EventArgs e)
         {
+        }
 
+        private void btnAcercade_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("114211 - Magnabosco Julian\r\n113943 - Sager Fabio Gabriel\r\n113938 - Orcellet Santiago Perez\r\n113931 - Cadenazzi Juan Manuel\r\n", "Quienes somos", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         // Reportes
         private void btnReporte1_Click(object sender, EventArgs e)
         {
-
+            new FrmReporteVentas(urlApi).ShowDialog();
         }
 
         private void btnReporte2_Click(object sender, EventArgs e)
         {
-
+            new FrmReporteSuministros(urlApi).ShowDialog();
         }
     }
 }

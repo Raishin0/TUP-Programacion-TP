@@ -23,7 +23,6 @@ namespace DataApi.dominio
         public int FormaPago { get { return formaPago; } set { formaPago = value; } }
         public int ObraSocial { get { return obraSocial; } set { obraSocial = value; } }
         public List<Detalle> Detalles { get { return detalles; } set { detalles = value; } }
-        public bool Habilitada { get; set; }
 
         public Venta()
         {

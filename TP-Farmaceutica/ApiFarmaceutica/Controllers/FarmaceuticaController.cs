@@ -89,9 +89,9 @@ namespace ApiFarmaceutica.Controllers
 
         // GET api/<FarmaceuticaController>/5
         [HttpGet("/ventas")]
-        public IActionResult GetObtenerVentasPorFiltros(string desde, string hasta, string cliente="")
+        public IActionResult GetObtenerVentasPorFiltros(string desde, string hasta, string? cliente="")
         {
-            List<Venta> ventas;
+            List<Venta> ventas = null;
             try
             {
                 DateTime fechaInicio = DateTime.Parse(desde);
@@ -104,6 +104,24 @@ namespace ApiFarmaceutica.Controllers
                 return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
             }
         }
+
+        [HttpGet("/ventasDeshabilitadas")]
+        public IActionResult GetObtenerVentasDesPorFiltros(string desde, string hasta, string? cliente = "")
+        {
+            List<Venta> ventas;
+            try
+            {
+                DateTime fechaInicio = DateTime.Parse(desde);
+                DateTime fechaFinal = DateTime.Parse(hasta);
+                ventas = dataApi.ObtenerVentasDeshabilitadasPorFiltros(fechaInicio, fechaFinal, cliente);
+                return Ok(ventas);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Error ! Revise los parametros o intente en otro momento");
+            }
+        }
+
 
         // GET api/<FarmaceuticaController>/5
         [HttpGet("/suministros")]

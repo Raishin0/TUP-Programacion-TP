@@ -53,7 +53,7 @@ namespace FrontFarmaceutica.formularios
 
             foreach (Detalle detalle in venta.Detalles)
             {
-                DgvDetalles.Rows.Add(new object[] { detalle.Suministro.Descripcion, detalle.Cantidad, detalle.Suministro.Precio });
+                DgvDetalles.Rows.Add(new object[] { detalle.Suministro.Descripcion, detalle.Cantidad, detalle.Cubierto, detalle.Suministro.Precio });
             }
             CalcularTotal();
         }

@@ -2,7 +2,7 @@ use FARMACIA_progra
 go
 
 --Login
-alter proc comprobarUsuario
+create proc comprobarUsuario
 @nombreUsuario varchar(100), @contrasenia varchar(100)
 as
 begin
@@ -18,7 +18,7 @@ begin
 end
 go
 exec comprobarUsuario 'Carlos', 'aguanteBOCA12'
-
+go
 -- proxima factura
 CREATE PROCEDURE proximaFactura
 @next int OUTPUT
@@ -62,20 +62,32 @@ END
 GO
 
 
-CREATE PROCEDURE consultarVentas
+create PROCEDURE consultarVentas
 	@fecha1 datetime,
 	@fecha2 datetime,
-	@cliente varchar(255)
+	@cliente varchar(255) = ''
 AS
 BEGIN
 	
 	SELECT * from Ventas
 	where fecha between @fecha1 and @fecha2 
-	and cliente like '%'+@cliente+'%'
+	and cliente like '%'+@cliente+'%' and habilitada=1
 END
 GO
 
 exec consultarVentas '1/1/2000', '12/12/2022', ''
+go
+create PROCEDURE consultarVentasDeshabilitadas
+	@fecha1 datetime,
+	@fecha2 datetime,
+	@cliente varchar(255)=''
+AS
+BEGIN
+	
+	SELECT * from Ventas
+	where fecha between @fecha1 and @fecha2 
+	and cliente like '%'+@cliente+'%' and (habilitada=0 or habilitada is null)
+END
 
 create PROCEDURE consultarVenta
 	@nro_venta int
@@ -101,12 +113,11 @@ create PROCEDURE insertarMaestro
 	@nro_venta int OUTPUT
 AS
 BEGIN
-	INSERT INTO Ventas (fecha, cliente, cod_forma_pago, cod_obra_social)
-    VALUES (@fecha,@cliente, @formaPago, @codigoOS);
+	INSERT INTO Ventas 
+    VALUES (@fecha,@cliente, @formaPago, @codigoOS, 1);
     --Asignamos el valor del último ID autogenerado (obtenido --  
     --mediante la función SCOPE_IDENTITY() de SQLServer)	
     SET @nro_venta = SCOPE_IDENTITY();
-
 END
 GO
 
@@ -197,7 +208,6 @@ create PROCEDURE modificarSuministro
 	@stock int
 AS
 BEGIN
-	if exists(select cod_suministro from suministros where cod_suministro=@cod_suministro)
 		update suministros 
 		set descripcion=@descripcion,
 		precio_unitario=@precio_unitario,
@@ -208,31 +218,22 @@ BEGIN
 END
 GO
 
-
 create PROCEDURE eliminarMaestro
 	@nro_venta int
 AS
 BEGIN
-	if exists(select nro_venta from ventas where nro_venta=@nro_venta)
-	begin
 		update ventas
 		set habilitada = 0
-		where nro_venta=@nro_vent
-	end
+		where nro_venta=@nro_venta
 END
 GO
-
 create PROCEDURE eliminarSuministro
 	@cod_suministro int
 AS
 BEGIN
-	if exists(select cod_suministro from suministros where cod_suministro=@cod_suministro)
-	begin
 		delete suministros where cod_suministro=@cod_suministro
-	end
 END
 GO
-
 
 ----- Formularios
 create procedure consultar_ventas
@@ -322,6 +323,3 @@ as
 	solicitada', 16, 1)
 	rollback transaction
 end
-
-select * from ventas
-

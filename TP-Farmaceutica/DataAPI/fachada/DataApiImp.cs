@@ -69,6 +69,10 @@ namespace DataAPI.fachada
         {
             return dao.ObtenerVentasPorFiltros(desde,hasta,cliente);
         }
+        public List<Venta> ObtenerVentasDeshabilitadasPorFiltros(DateTime desde, DateTime hasta, string cliente)
+        {
+            return dao.ObtenerVentasDeshabilitadasPorFiltros(desde,hasta, cliente);
+        }
         public List<Suministro> ObtenerSuministros()
         {
             return dao.ObtenerSuministros();

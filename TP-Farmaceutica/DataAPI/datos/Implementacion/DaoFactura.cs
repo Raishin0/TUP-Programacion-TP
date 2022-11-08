@@ -79,7 +79,7 @@ namespace DataApi.datos.Implementacion
         }
         public int ObtenerProximoNro()
         {
-            string sp = "proximaFactura";
+            string sp = "proximaVenta";
             return HelperDB.ObtenerInstancia().ConsultaEscalarSQL(sp, "@next");
         }
         public bool CrearVenta(Venta venta)
@@ -315,10 +315,29 @@ namespace DataApi.datos.Implementacion
                 factura.Cliente = row["cliente"].ToString();
                 factura.FormaPago = int.Parse(row["cod_forma_pago"].ToString());
                 factura.ObraSocial = int.Parse(row["cod_obra_social"].ToString());
-                if (row["habilitada"] != DBNull.Value) 
-                    factura.Habilitada = Convert.ToBoolean(row["habilitada"]);
-                else
-                    factura.Habilitada = false;
+                facturas.Add(factura);
+            }
+
+            return facturas;
+        }
+        public List<Venta> ObtenerVentasDeshabilitadasPorFiltros(DateTime desde, DateTime hasta, string cliente)
+        {
+            List<Venta> facturas = new List<Venta>();
+            string sp = "consultarVentasDeshabilitadas";
+            List<Parametro> lst = new List<Parametro>();
+            lst.Add(new Parametro("@fecha1", desde));
+            lst.Add(new Parametro("@fecha2", hasta));
+            lst.Add(new Parametro("@cliente", cliente));
+            DataTable dt = HelperDB.ObtenerInstancia().ConsultaSQL(sp, lst);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Venta factura = new Venta();
+                factura.Codigo = int.Parse(row["nro_venta"].ToString());
+                factura.Fecha = DateTime.Parse(row["fecha"].ToString());
+                factura.Cliente = row["cliente"].ToString();
+                factura.FormaPago = int.Parse(row["cod_forma_pago"].ToString());
+                factura.ObraSocial = int.Parse(row["cod_obra_social"].ToString());
                 facturas.Add(factura);
             }
 

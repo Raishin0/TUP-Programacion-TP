@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.17" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataAPI\DataAPI.csproj" />
     <ProjectReference Include="..\NetFrameworkFront\NetFrameworkFront.csproj" />
   </ItemGroup>

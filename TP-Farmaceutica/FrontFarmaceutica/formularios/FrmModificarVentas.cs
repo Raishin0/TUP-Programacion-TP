@@ -41,7 +41,6 @@ namespace FrontFarmaceutica.formularios
             CbxArticulos.DataSource = lst;
             CbxArticulos.DisplayMember = "descripcion";
             CbxArticulos.ValueMember = "codigo";
-            CbxArticulos.SelectedIndex = -1;
         }
 
 
@@ -54,7 +53,6 @@ namespace FrontFarmaceutica.formularios
             CbxFormaPago.DataSource = new BindingSource(lst, null);
             CbxFormaPago.DisplayMember = "Value";
             CbxFormaPago.ValueMember = "Key";
-            CbxFormaPago.SelectedIndex = -1;
         }
 
         private async Task CargarComboObrasSocialesAsync()
@@ -65,7 +63,6 @@ namespace FrontFarmaceutica.formularios
             CbxObrasSociales.DataSource = new BindingSource(lst, null);
             CbxObrasSociales.DisplayMember = "Value";
             CbxObrasSociales.ValueMember = "Key";
-            CbxObrasSociales.SelectedIndex = -1;
         }
 
         private async Task ObtenerFacturaPorNroAsync(int nroVenta)
@@ -85,7 +82,7 @@ namespace FrontFarmaceutica.formularios
             await ObtenerFacturaPorNroAsync(venta.Codigo);
             foreach (Detalle d in venta.Detalles)
             {
-                DgvDetalles.Rows.Add(new object[] { d.Suministro.Descripcion, d.Cantidad, d.Suministro.Precio });
+                DgvDetalles.Rows.Add(new object[] { d.Suministro.Descripcion, d.Cantidad, d.Cubierto, d.Suministro.Precio });
             }
             CalcularTotal();
         }
@@ -126,7 +123,7 @@ namespace FrontFarmaceutica.formularios
 
         private void DgvDetalles_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (DgvDetalles.CurrentCell.ColumnIndex == 3)
+            if (DgvDetalles.CurrentCell.ColumnIndex == 4)
             {
                 venta.QuitarDetalle(DgvDetalles.CurrentRow.Index);
                 DgvDetalles.Rows.Remove(DgvDetalles.CurrentRow);
@@ -186,7 +183,7 @@ namespace FrontFarmaceutica.formularios
             Detalle detalle = new Detalle(a, cantidad, precioVenta, cubierto);
             venta.AgregarDetalle(detalle);
             DgvDetalles.Rows.Add(new object[] { a.Descripcion,
-            cantidad, a.Precio});
+             cantidad,cubierto, precioVenta});
             CalcularTotal();
         }
 
@@ -210,6 +207,26 @@ namespace FrontFarmaceutica.formularios
                 return;
             }
             GuardarFactura();
+        }
+
+        private void CbxArticulos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Suministro item = (Suministro)CbxArticulos.SelectedItem;
+            if (item == null) return;
+            if (item.VentaLibre == 1)
+            {
+                checkCubierto.Enabled = true;
+            }
+            else if (item.VentaLibre == 0)
+            {
+                checkCubierto.Enabled = false;
+                checkCubierto.Checked = true;
+            }
+            else
+            {
+                checkCubierto.Enabled = false;
+                checkCubierto.Checked = false;
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace DataApi.datos.Interfaz
         bool ActualizarSuministro(Suministro suministro);
         bool BorrarSuministro(int nro);
         List<Venta> ObtenerVentasPorFiltros(DateTime desde, DateTime hasta, string cliente);
+        List<Venta> ObtenerVentasDeshabilitadasPorFiltros(DateTime desde, DateTime hasta, string cliente);
         List<Suministro> ObtenerSuministros();
         Venta ObtenerVentaPorNro(int nro);
         DataTable ObtenerReporteVentas(DateTime desde, DateTime hasta);

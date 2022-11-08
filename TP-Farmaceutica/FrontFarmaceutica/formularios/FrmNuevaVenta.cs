@@ -138,18 +138,18 @@ namespace FrontFarmaceutica.formularios
             Suministro a = new Suministro(art, nom, pre,libre,tipo,stk);
             int cantidad = Convert.ToInt32(TbxCantidad.Text);
             double precioVenta = pre;
-            bool cubierto=false;
+            bool cubierto= checkCubierto.Checked;
 
             Detalle detalle = new Detalle(a, cantidad, precioVenta, cubierto);
             nueva.AgregarDetalle(detalle);
             DgvDetalles.Rows.Add(new object[] { a.Descripcion,
-            cantidad, a.Precio});
+            cubierto,cantidad, precioVenta});
             CalcularTotal();
         }
 
         private void DgvDetalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DgvDetalles.CurrentCell.ColumnIndex == 3 && DgvDetalles.Rows.Count > 0)
+            if (DgvDetalles.CurrentCell.ColumnIndex == 4 && DgvDetalles.Rows.Count > 0)
             {
                 nueva.QuitarDetalle(DgvDetalles.CurrentRow.Index);
                 //click button:
@@ -175,6 +175,12 @@ namespace FrontFarmaceutica.formularios
             if (CbxFormaPago.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe ingresar una forma de pago!", "Control",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (CbxObrasSociales.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe ingresar una obra social o elegir 'sin obra'!", "Control",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -208,8 +214,28 @@ namespace FrontFarmaceutica.formularios
             }
             else
             {
-                MessageBox.Show("ERROR. No se pudo registrar la factura",
+                MessageBox.Show("ERROR. No se pudo registrar la venta\nRevise que aun quede stock de los productos",
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CbxArticulos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Suministro item = (Suministro)CbxArticulos.SelectedItem;
+            if (item == null) return;
+            if (item.VentaLibre == 1)
+            {
+                checkCubierto.Enabled = true;
+            }
+            else if (item.VentaLibre == 0)
+            {
+                checkCubierto.Enabled = false;
+                checkCubierto.Checked = true;
+            }
+            else
+            {
+                checkCubierto.Enabled = false;
+                checkCubierto.Checked = false;
             }
         }
     }
