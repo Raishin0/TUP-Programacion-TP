@@ -20,7 +20,7 @@ go
 exec comprobarUsuario 'Carlos', 'aguanteBOCA12'
 go
 -- proxima factura
-CREATE PROCEDURE proximaFactura
+CREATE PROCEDURE proximaVenta
 @next int OUTPUT
 AS
 BEGIN
