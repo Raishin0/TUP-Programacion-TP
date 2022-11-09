@@ -109,6 +109,10 @@ namespace FrontFarmaceutica.formularios
                 MessageBoxIcon.Exclamation);
                 return;
             }
+
+
+            Suministro item = (Suministro)CbxArticulos.SelectedItem;
+
             if (DgvDetalles.Rows.Count > 0) {
                 foreach (DataGridViewRow row in DgvDetalles.Rows)
                 {
@@ -118,8 +122,17 @@ namespace FrontFarmaceutica.formularios
                         MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             int valor = int.Parse(row.Cells["Cantidad"].Value.ToString()) + int.Parse(TbxCantidad.Text);
+
+                            if (valor > item.Stock)
+                            {
+                                MessageBox.Show("La cantidad solicitada excede el stock!",
+                                "Control", MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation);
+                                return;
+                            }
                             row.Cells["Cantidad"].Value = valor.ToString();
                             nueva.Detalles[row.Index].Cantidad = valor;
+
                             CalcularTotal();
                         }
                         return;
@@ -127,7 +140,6 @@ namespace FrontFarmaceutica.formularios
                 }
             }
 
-            Suministro item = (Suministro)CbxArticulos.SelectedItem;
 
             int art = item.Codigo;
             string nom = item.Descripcion;
@@ -139,6 +151,15 @@ namespace FrontFarmaceutica.formularios
             int cantidad = Convert.ToInt32(TbxCantidad.Text);
             double precioVenta = pre;
             bool cubierto= checkCubierto.Checked;
+
+
+            if (cantidad > item.Stock)
+            {
+                MessageBox.Show("La cantidad solicitada excede el stock!",
+                "Control", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
 
             Detalle detalle = new Detalle(a, cantidad, precioVenta, cubierto);
             nueva.AgregarDetalle(detalle);
@@ -161,7 +182,11 @@ namespace FrontFarmaceutica.formularios
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            if (MessageBox.Show("Esta seguro que desea salir?.", "IMPORTANTE.",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
@@ -214,7 +239,7 @@ namespace FrontFarmaceutica.formularios
             }
             else
             {
-                MessageBox.Show("ERROR. No se pudo registrar la venta\nRevise que aun quede stock de los productos",
+                MessageBox.Show("ERROR. No se pudo registrar la venta",
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

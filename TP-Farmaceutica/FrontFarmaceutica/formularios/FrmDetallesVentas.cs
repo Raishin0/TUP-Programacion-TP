@@ -30,6 +30,7 @@ namespace FrontFarmaceutica.formularios
         {
             await CargarComboAsync();
             CargarFactura();
+            LblFactura.Text = "Venta Nº" + nroVenta;
         }
     
         private async Task CargarComboAsync()

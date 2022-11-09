@@ -269,14 +269,19 @@ GO
 create PROCEDURE insertarSuministro
 	@descripcion varchar(255),
 	@precio_unitario money, 
-	@venta_libre bit,
+	@venta_libre int,
 	@cod_tipo_sum int,
 	@stock int
 AS
 BEGIN
+	declare @vl bit
+	if @venta_libre =-1
+		set @vl = null
+	else
+		set @vl = @venta_libre
 	insert into suministros values( @descripcion,
 		@precio_unitario,
-		@venta_libre,
+		@vl,
 		@cod_tipo_sum,
 		@stock)
 END
@@ -294,6 +299,8 @@ BEGIN
 	update Ventas 
 	set fecha=@fecha, cliente=@cliente, cod_forma_pago=@formaPago, cod_obra_social=@codigoOS
     where @nro_venta=nro_venta
+
+	delete Detalles_ventas where @nro_venta=nro_venta
 END
 GO
 
@@ -305,25 +312,8 @@ create PROCEDURE modificarDetalle
 	@cubierto bit
 AS
 BEGIN
-	if exists(select cod_detalle_venta from Detalles_ventas where nro_venta=@nro_venta and cod_suministro=@cod_suministro)
-	begin
-		if @cantidad>0
-		begin
-			update Detalles_ventas 
-			set cantidad=@cantidad,precio_venta=@precio,cubierto=@cubierto
-			where nro_venta=@nro_venta and cod_suministro=@cod_suministro
-		end
-		else
-		begin 
-			delete Detalles_ventas 
-			where nro_venta=@nro_venta and cod_suministro=@cod_suministro
-		end
-	end
-	else
-	begin
-		INSERT INTO Detalles_ventas (nro_venta,cod_suministro,cantidad,precio_venta,cubierto)
-		VALUES (@nro_venta, @cod_suministro, @cantidad, @precio,@cubierto);
-	end
+	INSERT INTO Detalles_ventas (nro_venta,cod_suministro,cantidad,precio_venta,cubierto)
+	VALUES (@nro_venta, @cod_suministro, @cantidad, @precio,@cubierto);
 END
 GO
 
@@ -331,18 +321,23 @@ create PROCEDURE modificarSuministro
 	@cod_suministro int,
 	@descripcion varchar(255),
 	@precio_unitario money, 
-	@venta_libre bit,
+	@venta_libre int,
 	@cod_tipo_sum int,
 	@stock int
 AS
 BEGIN
-		update suministros 
-		set descripcion=@descripcion,
-		precio_unitario=@precio_unitario,
-		venta_libre=@venta_libre,
-		cod_tipo_sum=@cod_tipo_sum,
-		stock=@stock
-		where cod_suministro=@cod_suministro
+	declare @vl bit
+	if @venta_libre =-1
+		set @vl = null
+	else
+		set @vl = @venta_libre
+	update suministros 
+	set descripcion=@descripcion,
+	precio_unitario=@precio_unitario,
+	venta_libre=@vl,
+	cod_tipo_sum=@cod_tipo_sum,
+	stock=@stock
+	where cod_suministro=@cod_suministro
 END
 GO
 
@@ -450,3 +445,13 @@ as
 	solicitada', 16, 1)
 	rollback transaction
 end
+go
+
+create trigger dis_del_stock
+	on Detalles_ventas
+	for delete
+as
+	update Suministros set Stock=Stock+deleted.cantidad
+	from Suministros
+	join deleted
+	on deleted.cod_suministro=Suministros.cod_suministro

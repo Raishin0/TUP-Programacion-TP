@@ -220,6 +220,7 @@ namespace DataApi.datos.Implementacion
                 cmd.CommandText = "insertarSuministro";
                 cmd.CommandType = CommandType.StoredProcedure;
 
+
                 cmd.Parameters.AddWithValue("@descripcion", suministro.Descripcion);
                 cmd.Parameters.AddWithValue("@precio_unitario", suministro.Precio);
                 cmd.Parameters.AddWithValue("@venta_libre", suministro.VentaLibre);

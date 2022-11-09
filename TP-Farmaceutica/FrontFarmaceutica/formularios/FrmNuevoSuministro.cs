@@ -60,7 +60,7 @@ namespace FrontFarmaceutica.formularios
                 txtPrecio.Focus();
                 return false;
             }
-            if(!rdbSi.Checked && !rdbNo.Checked)
+            if(!rdbSi.Checked && !rdbNo.Checked && !rdbIndefinido.Checked)
             {
                 MessageBox.Show("Debe seleccionar el estado de venta ", "MENSAJE..", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 rdbSi.Focus();

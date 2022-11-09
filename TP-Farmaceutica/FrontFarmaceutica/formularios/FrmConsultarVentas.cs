@@ -44,11 +44,15 @@ namespace FrontFarmaceutica.formularios
             {
                 url = urlApi + string.Format("ventas?desde={0}&hasta={1}&cliente={2}",
                     DtpPrimeraFecha.Value, DtpUltimaFecha.Value, TbxCliente.Text);
+                DgvFacturas.Columns[5].Visible = true;
+                DgvFacturas.Columns[6].Visible = true;
             }
             else
             {
                 url = urlApi + string.Format("ventasDeshabilitadas?desde={0}&hasta={1}&cliente={2}",
                     DtpPrimeraFecha.Value, DtpUltimaFecha.Value, TbxCliente.Text);
+                DgvFacturas.Columns[5].Visible = false;
+                DgvFacturas.Columns[6].Visible = false;
             }
             var data = await ClienteSingleton.GetInstance().GetAsync(url);
             List<Venta> lst = JsonConvert.DeserializeObject<List<Venta>>(data);
