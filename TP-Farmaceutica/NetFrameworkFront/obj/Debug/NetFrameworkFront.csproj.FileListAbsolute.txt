@@ -193,3 +193,6 @@ C:\Users\Juan\Desktop\Nueva carpeta\TUP-Programacion-TP\TP-Farmaceutica\NetFrame
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\NetFrameworkFront\obj\Debug\NetFrameworkFront.FrmReporteSuministros.resources
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\NetFrameworkFront\bin\Debug\Newtonsoft.Json.dll
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\NetFrameworkFront\bin\Debug\Newtonsoft.Json.xml
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\NetFrameworkFront\bin\Debug\Newtonsoft.Json.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\NetFrameworkFront\bin\Debug\Newtonsoft.Json.xml
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\NetFrameworkFront\obj\Debug\NetFrameworkFront.FrmReporteSuministros.resources

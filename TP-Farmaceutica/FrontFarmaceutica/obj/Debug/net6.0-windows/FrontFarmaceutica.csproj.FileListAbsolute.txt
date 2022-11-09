@@ -64,40 +64,9 @@ C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceut
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\Microsoft.ReportViewer.Common.dll
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\Microsoft.ReportViewer.ProcessingObjectModel.dll
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\Microsoft.ReportViewer.DataVisualization.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\Microsoft.SqlServer.Types.dll
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\DataAPI.pdb
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\NetFrameworkFront.pdb
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\NetFrameworkFront.exe.config
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\de\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\es\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\fr\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\it\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ja\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ko\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pt\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ru\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\de\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\es\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\fr\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\it\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ja\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ko\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pt\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ru\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\de\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\es\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\it\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.csproj.AssemblyReference.cache
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.formularios.FrmConsultarSuministros.resources
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.formularios.FrmConsultarVentas.resources
@@ -118,7 +87,6 @@ C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceut
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.genruntimeconfig.cache
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\ref\FrontFarmaceutica.dll
 C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.Properties.Resources.resources
-C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.formularios.frmPrincipalFacha.resources
 C:\Users\Juan\Desktop\Nueva carpeta\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\SqlServerTypes\x64\msvcr120.dll
 C:\Users\Juan\Desktop\Nueva carpeta\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\SqlServerTypes\x64\SqlServerSpatial140.dll
 C:\Users\Juan\Desktop\Nueva carpeta\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\SqlServerTypes\x86\msvcr120.dll
@@ -229,3 +197,33 @@ D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\FrontFarm
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\tr\Microsoft.CodeAnalysis.VisualBasic.resources.dll
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-Hans\Microsoft.CodeAnalysis.VisualBasic.resources.dll
 D:\Mis documentos\FacuJuli21\prog2\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-Hant\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\cs\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\de\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\es\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\fr\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\it\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ja\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ko\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pl\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\pt-BR\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\ru\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\tr\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-Hans\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\bin\Debug\net6.0-windows\zh-Hant\Microsoft.CodeAnalysis.VisualBasic.resources.dll
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.formularios.FrmModBajaSuministro.resources
+C:\Users\fabio\OneDrive\Escritorio\Repositorios\TUP-Programacion-TP\TP-Farmaceutica\FrontFarmaceutica\obj\Debug\net6.0-windows\FrontFarmaceutica.formularios.FrmNuevoSuministro.resources

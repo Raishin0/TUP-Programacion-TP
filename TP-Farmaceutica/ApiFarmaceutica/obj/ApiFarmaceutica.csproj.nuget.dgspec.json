@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj": {}
+    "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj": {}
   },
   "projects": {
-    "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj": {
+    "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj",
+        "projectUniqueName": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj",
         "projectName": "ApiFarmaceutica",
-        "projectPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj",
-        "packagesPath": "C:\\Users\\juliemi\\.nuget\\packages\\",
-        "outputPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\obj\\",
+        "projectPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\ApiFarmaceutica.csproj",
+        "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\ApiFarmaceutica\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\juliemi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj": {
-                "projectPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj"
+              "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj": {
+                "projectPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj"
               }
             }
           }
@@ -72,17 +76,21 @@
         }
       }
     },
-    "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj": {
+    "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
+        "projectUniqueName": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
         "projectName": "DataAPI",
-        "projectPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
-        "packagesPath": "C:\\Users\\juliemi\\.nuget\\packages\\",
-        "outputPath": "D:\\Mis documentos\\FacuJuli21\\prog2\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\obj\\",
+        "projectPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\DataAPI.csproj",
+        "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fabio\\OneDrive\\Escritorio\\Repositorios\\TUP-Programacion-TP\\TP-Farmaceutica\\DataAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\juliemi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -18,7 +18,7 @@ namespace DataApi.datos
 
         private HelperDB()
         {
-            cnn = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=FARMACIA_progra;Integrated Security=True");
+            cnn = new SqlConnection(@"Data Source=localhost;Initial Catalog=FARMACIA_progra;Integrated Security=True");
         }
 
         public static HelperDB ObtenerInstancia()
